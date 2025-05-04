@@ -96,28 +96,92 @@
 
 
 <!---------------------------------- section preview produk ------------------------>
-<section class="preview produk">
+<section class="preview-produk">
+<h1>Our Products</h1>
 <div class="container-baris">
+  <!---Produk 1--->
   <div class="container-produk">
+    <div class="gambar-produk" id="produk-1"></div>
+    <div class="detail-produk">
     <h2>Golden Mahseer</h2>
     <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
     <h2>Rp100.000</h2>
-    <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>   
+    <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
   </div>
-  <div class="container-produk">
-    <h2>Golden Mahseer</h2>
-    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
-    <h2>Rp100.000</h2>
-    <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>   
   </div>
+  <!---Produk 2--->
   <div class="container-produk">
+    <div class="gambar-produk" id="produk-2"></div>
+    <div class="detail-produk">
     <h2>Golden Mahseer</h2>
     <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
     <h2>Rp100.000</h2>
-    <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>   
+    <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
+  </div>
+  </div>
+  <!---Produk 3--->
+  <div class="container-produk">
+    <div class="gambar-produk" id="produk-3"></div>
+    <div class="detail-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
+  </div>
+  </div>
+</div>
+
+<div class="container-baris">
+  <!---Produk 4--->
+  <div class="container-produk">
+    <div class="gambar-produk" id="produk-4"></div>
+    <div class="detail-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
+  </div>
+  </div>
+  <!---Produk 5--->
+  <div class="container-produk">
+    <div class="gambar-produk" id="produk-5"></div>
+    <div class="detail-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
+  </div>
+  </div>
+  <!---Produk 6--->
+  <div class="container-produk">
+    <div class="gambar-produk" id="produk-6"></div>
+    <div class="detail-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
+  </div>
   </div>
 </div>
 </section>
+
+    
+<script>
+  let currentIndex = 0;
+
+  function moveSlide(step) {
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+</script>
+
+    
+    </body>
+</html>
 
     
 <script>
