@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-sm w-full bg-white p-6 rounded shadow space-y-6">
+      
+      <h2 class="text-xl font-bold text-center">Admin Dashboard</h2>
+
+      <div id="user-info" class="text-center hidden">
+        <p id="user-email"></p>
+        <button id="logout" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">Logout</button>
+      </div>
+
+      <!-- Product Upload Form -->
+      <form id="product-form" class="space-y-4">
+        <h3 class="text-lg font-semibold text-center">Upload New Product</h3>
+        <input type="text" name="name" placeholder="Product Name" class="w-full px-4 py-2 border rounded shadow-sm" required />
+        <input type="number" name="price" placeholder="Price" class="w-full px-4 py-2 border rounded shadow-sm" required />
+        <input type="file" name="image" class="w-full px-4 py-2 border rounded shadow-sm" required />
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+          Upload Product
+        </button>
+      </form>
+
+      <div id="product-list" class="mt-6 space-y-4">
+        <!-- Display products here -->
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="admin-dashboard.js"></script> <!-- Ensure only one instance of each script -->
+</body>
+</html>
