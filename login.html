@@ -65,6 +65,21 @@
     </div>
   </div>
 
+  <!-- Add a modal for successful login -->
+  <div id="login-success-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded shadow-lg text-center">
+      <h2 class="text-xl font-bold mb-4">Login Successful!</h2>
+      <p>Welcome back!</p>
+      <button id="close-modal" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Close</button>
+    </div>
+  </div>
+
+  <!-- Add a profile section -->
+  <div id="profile-section" class="hidden text-center mt-6">
+    <h2 class="text-xl font-bold">Your Profile</h2>
+    <p id="profile-email" class="text-gray-700"></p>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="script.js"></script> <!-- Ensure only one instance of each script -->
 </body>
