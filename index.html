@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Exotic Mahseer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  </head>
+  <body>
+    <header>
+        <nav>
+            <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
+            <ul>
+                <li> <a href= "#home"> Home </a></li>
+                <li> <a href= "#shop"> Shop </a></li>
+                <li> <a href= "#funfact"> Funfact </a></li>
+                <li> <a href= "#aboutUs"> About Us </a></li>
+                <li> <a href= "#contact"> Contact </a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="home" id="beranda">
+        <h1 class="fade-in">Experience the <span class="lime">Authentic Taste</span> of Mahseer with Us</h1>
+        <p class="fade-in-delay">Exotic Mahseer adalah perusahaan yang bergerak di bidang perikanan dan berfokus pada penjualan berbagai jenis ikan Mahseer, salah satu ikan air tawar bernilai tinggi. Kami hadir sebagai sarana eksplorasi dan jual-beli.</p>
+        <a href="#aboutUs" class="seeMore-button">See More</a>
+    </section>
+    
+<!------------------------ section funfact ------------------------------>
+    <section class="funfact" id="funfact">
+      <div class="carousel-container">
+        <button class="carousel-btn left" onclick="moveSlide(-1)">&#10094;</button>
+    
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Slide 1 -->
+          <div class="carousel-slide">
+            <img src="images/funfact1.png" class="funfact-image">
+            <div class="funfact-text">
+              <h1>Sang Ikan Suci</h1>
+              <h2>Ikan Mahseer adalah dewa ikan?</h2>
+              <p>Indonesia mempunyai banyak jenis ikan air tawar, salah satunya adalah ikan Mahseer...</p>
+              <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>
+            </div>
+          </div>
+    
+          <!-- Slide 2  -->
+          <div class="carousel-slide">
+            <img src="images/funfact1.png" class="funfact-image">
+            <div class="funfact-text">
+              <h1>Ikan Legendaris</h1>
+              <h2>Dikenal sejak zaman kerajaan!</h2>
+              <p>Ikan Mahseer telah disebut dalam banyak kisah kuno sebagai ikan raja...</p>
+              <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>
+            </div>
+          </div>
+
+          <!-- Slide 2  -->
+          <div class="carousel-slide">
+            <img src="images/funfact1.png" class="funfact-image">
+            <div class="funfact-text">
+              <h1>Ikan Mahseer anjay</h1>
+              <h2>Dikenal sejak zaman kerajaan!</h2>
+              <p>Ikan Mahseer telah disebut dalam banyak kisah kuno sebagai ikan raja...</p>
+              <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>
+            </div>
+          </div>
+    
+          <!-- Tambah slide lain sesuai kebutuhan -->
+        </div>
+    
+        <button class="carousel-btn right" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </section>
+
+
+<!---------------------------------- section preview produk ------------------------>
+<section class="preview produk">
+<div class="container-baris">
+  <div class="container-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>   
+  </div>
+  <div class="container-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>   
+  </div>
+  <div class="container-produk">
+    <h2>Golden Mahseer</h2>
+    <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+    <h2>Rp100.000</h2>
+    <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>   
+  </div>
+</div>
+</section>
+
+    
+<script>
+  let currentIndex = 0;
+
+  function moveSlide(step) {
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+</script>
+
+    
+    </body>
+</html>
