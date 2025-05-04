@@ -238,5 +238,87 @@
   }
 
 /* ---------------------------------section preview produk---------------------------------------- */
-.
+.preview-produk {
+  background-color:#17366E;
+  padding: 75px 220px;
+}
+
+.preview-produk h1 {
+  text-align: center;
+  font-size: 42px;
+  padding-bottom: 30px;
+  font-weight: bolder;
+  color: #D6E264;
+}
+
+.container-baris {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.container-baris h2 {
+  color:#17366E;
+  padding: 12px 0;
+}
+
+.container-baris p {
+  text-align: justify;
+  font-size: 15px;
+}
+
+.container-produk {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+#seeMore-button-lime {
+  background-color: #D6E264;
+  font-size: 13px;
+}
+
+#seeMore-button-lime:hover {
+  background-color:#2751a0;
+  color: #DCF3FF;
+}
+
+#produk-1 {
+  background: url(images/produk1.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-2 {
+  background: url(images/produk2.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-3 {
+  background: url(images/produk3.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-4 {
+  background: url(images/produk4.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-5 {
+  background: url(images/produk5.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-6 {
+  background: url(images/produk6.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
   
