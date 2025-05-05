@@ -34,6 +34,20 @@
     color: #2d60bf;
   }
 
+  .login-button {
+    background-color: #DCF3FF;
+    padding: 5px 15px;
+    border-radius: 30px;
+    transition: background-color 0.5s ease;
+  }
+
+  .login-button:hover {
+    background-color:#17366E;
+    color:#DCF3FF;
+    padding: 5px 15px;
+    border-radius: 30px;
+  }
+
   .logo {
     width: 120px;
   }
@@ -377,4 +391,156 @@
 .sosmed p::before {
   display: none;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* -------------------- login page --------------------------*/
+body.login {
+  background-image: url(images/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 18px;
+}
+
+.login-section h1 {
+  font-size: 45px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #DAF1FF;
+}
+
+.login-card {
+  background-color: #17366E;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-card h2 {
+  color: #DAF1FF;
+  padding: 5px 0;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  background-color: #89BCD9;
+  padding: 12px 15px;
+  border-radius: 5px;
+  border: none;
+  color: #DAF1FF;
+  font-size: 16px;
+}
+
+.input-container input::placeholder {
+  color: #DAF1FF;
+  opacity: 0.8;
+}
+
+.input-container input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #DAF1FF;
+}
+
+.login-btn, .google-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.login-btn {
+  background-color: #D9E76C;
+  color: #17366E;
+}
+
+.google-btn {
+  background-color: transparent;
+  color: #D9E76C;
+  border: 1px solid #D9E76C;
+}
+
+.login-btn:hover, .google-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.login-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-links p {
+  color: #DAF1FF;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.login-links a {
+  color: #D9E76C;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .login-section h1 {
+    font-size: 36px;
+  }
+  
+  .login-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-section h1 {
+    font-size: 30px;
+  }
+  
+  .login-card {
+    padding: 15px;
+  }
+  
+  .input-container input {
+    padding: 10px;
+  }
+  
+  .login-btn, .google-btn {
+    padding: 10px;
+  }
+}
+
+
 
