@@ -88,7 +88,6 @@
     border-radius: 30px;
     color:#17366E;
     font-weight: 800;
-    cursor: pointer;
     align-items: center;
     transition: background-color 0.3s ease;
     opacity: 0;
@@ -249,6 +248,7 @@
   padding-bottom: 30px;
   font-weight: bolder;
   color: #D6E264;
+  align-items: center;
 }
 
 .container-baris {
@@ -321,4 +321,60 @@
   height: 180px;
   border-radius: 7px;
 }
-  
+
+/* -------------------------------section footer------------------------------*/
+.footer {
+  background: linear-gradient(90deg, #FFF -61.54%, #89BCD9 131.61%);
+  padding: 40px 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #17366E;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 170px;
+}
+
+.logo-footer {
+  width: 140px;
+}
+
+.footer-kiri,
+.footer-kanan {
+  max-width: 45%;
+}
+
+.footer-kiri h2,
+.footer-kanan h2 {
+  font-size: 20px;
+  margin: 5px 0;
+  color: #17366E;
+}
+
+.footer-kiri p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.sosmed p {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: #17366E;
+  border-radius: 50px;
+}
+
+.sosmed p::before {
+  display: none;
+}
+
