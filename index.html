@@ -18,6 +18,7 @@
     <title>Exotic Mahseer</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -163,25 +164,28 @@
   </div>
   </div>
 </div>
+<a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More Products</a>   
 </section>
 
-    
-<script>
-  let currentIndex = 0;
 
-  function moveSlide(step) {
-    const track = document.getElementById('carouselTrack');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const totalSlides = slides.length;
-
-    currentIndex = (currentIndex + step + totalSlides) % totalSlides;
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-</script>
-
-    
-    </body>
-</html>
+<!--------------------------------section contact (footer)------------------------------>
+<section class="footer">
+  <div class="footer-container">
+    <div class="footer-kiri">
+      <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo-footer">
+      <h2>Exotic Mahseer</h2>
+      <p>Jl. Swadaya Murni 3 No.4, RT.002/RW.003, Jatimurni, Kec. Pd. Melati, Kota Bekasi, Jawa Barat 17431</p>
+    </div>
+    <div class="footer-kanan">
+      <h2>More Information</h2>
+      <div class="sosmed">
+        <p><img src="images/instagram.png" alt="instagram icon" class="icon"> @exoticmahseer.id (Instagram)</p>
+        <p><img src="images/whatsapp.png" alt="whatsapp icon" class="icon"> +62 8138-7967-910 (WhatsApp)</p>
+        <p><img src="images/tokopedia.png" alt="tokopedia icon" class="icon"> ExoticMahseer (Tokopedia)</p>
+      </div>
+    </div>
+  </div>
+</section>
 
     
 <script>
