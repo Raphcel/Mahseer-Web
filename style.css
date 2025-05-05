@@ -399,7 +399,7 @@
   font-family: 'Nunito', sans-serif;
 }
 
-/* -------------------- login page --------------------------*/
+/* -------------------- login & sign up page --------------------------*/
 body.login {
   background-image: url(images/background.png);
   background-size: cover;
@@ -414,13 +414,13 @@ body.login {
 .login-section {
   width: 100%;
   max-width: 1200px;
-  padding: 18px;
+  padding: 20px;
 }
 
 .login-section h1 {
   font-size: 45px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #DAF1FF;
 }
 
@@ -513,6 +513,19 @@ body.login {
   text-decoration: underline;
 }
 
+/* Animation for step transition */
+.step {
+  transition: opacity 0.3s ease;
+}
+
+.step.fade-out {
+  opacity: 0;
+}
+
+.step.fade-in {
+  opacity: 1;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .login-section h1 {
@@ -541,6 +554,5 @@ body.login {
     padding: 10px;
   }
 }
-
 
 
