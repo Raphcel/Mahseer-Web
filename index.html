@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,23 +13,30 @@
     <title>Exotic Mahseer</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      .product-preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    </style>
   </head>
   <body>
     <header>
-      
-        <nav>
-            <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
-            <ul>
-                <li> <a href= "#home"> Home </a></li>
-                <li> <a href= "#shop"> Shop </a></li>
-                <li> <a href= "#funfact"> Funfact </a></li>
-                <li> <a href= "#aboutUs"> About Us </a></li>
-                <li> <a href= "#contact"> Contact </a></li>
-                <span id="auth-button-container">
-                  <a href="./login.html" id="auth-button" class="text-blue-600 hover:underline">Sign In / Sign Up</a>
-                </span>
-            </ul>
-        </nav>
+      <nav>
+        <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#funfact">Funfact</a></li>
+          <li><a href="#aboutUs">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <span id="auth-button-container">
+            <a href="./signup.html" id="auth-button" class="text-blue-600 hover:underline">Sign In / Sign Up</a>
+          </span>
+        </ul>
+      </nav>
     </header>
     
     <section class="home" id="beranda">
@@ -85,7 +93,7 @@
 
 
 <!---------------------------------- section preview produk ------------------------>
-<section class="bg-white py-24 sm:py-32">
+<section class="bg-white py-24 sm:py-32 product-preview">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our Products</h2>

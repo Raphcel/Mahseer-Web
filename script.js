@@ -26,20 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // Toggle between forms (signup vs. login)
   const toggleFormLink = document.getElementById('toggle-form-link');
   if (toggleFormLink) {
-    toggleFormLink.addEventListener('click', () => {
+    toggleFormLink.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default link behavior
+
       const signupForm = document.getElementById('signup-form');
       const loginForm = document.getElementById('login-form');
 
       if (signupForm && loginForm) {
-        if (signupForm.classList.contains('hidden')) {
-          signupForm.classList.remove('hidden');
-          loginForm.classList.add('hidden');
-          toggleFormLink.textContent = "Already have an account? Sign In";
-        } else {
-          signupForm.classList.add('hidden');
-          loginForm.classList.remove('hidden');
-          toggleFormLink.textContent = "Don’t have an account? Sign Up";
-        }
+        console.log('Before toggle:', {
+          signupHidden: signupForm.classList.contains('hidden'),
+          loginHidden: loginForm.classList.contains('hidden')
+        });
+
+        signupForm.classList.toggle('hidden');
+        loginForm.classList.toggle('hidden');
+
+        console.log('After toggle:', {
+          signupHidden: signupForm.classList.contains('hidden'),
+          loginHidden: loginForm.classList.contains('hidden')
+        });
+
+        toggleFormLink.textContent = signupForm.classList.contains('hidden')
+          ? "Don’t have an account? Sign Up"
+          : "Already have an account? Sign In";
       }
     });
   }
@@ -191,18 +200,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   client.auth.onAuthStateChange(async (event, session) => {
     if (session?.user) {
-      const userInfo = document.getElementById('user-info');
-      if (userInfo) {
-        userInfo.classList.remove('hidden');
-        document.getElementById('user-email').textContent = session.user.email;
+      const user = session.user;
+  
+      // Check if the user is an admin
+      const { data: adminData, error } = await client
+        .from('admins')
+        .select('user_id')
+        .eq('user_id', user.id);
+  
+      if (error) {
+        console.error('Error checking admin status:', error);
+        return;
       }
-      if (await isAdmin()) {
-        const productForm = document.getElementById('product-form');
-        if (productForm) {
-          productForm.classList.remove('hidden');
+  
+      if (adminData.length > 0) {
+        // User is an admin, redirect to admin dashboard
+        window.location.href = './admin-dashboard.html';
+      } else {
+        // User is not an admin, show user-specific content
+        const userInfo = document.getElementById('user-info');
+        if (userInfo) {
+          userInfo.classList.remove('hidden');
+          document.getElementById('user-email').textContent = user.email;
         }
       }
     } else {
+      // User is logged out, hide user-specific content
       const userInfo = document.getElementById('user-info');
       if (userInfo) {
         userInfo.classList.add('hidden');
@@ -241,39 +264,47 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchProducts();
 
   const authButtonContainer = document.getElementById('auth-button-container');
-
-  if (!authButtonContainer) {
-    console.error('auth-button-container not found in the DOM');
-    return;
+  if (document.getElementById('auth-button-container')) {
+    // Run the auth-button-container related code
   }
-
-  client.auth.onAuthStateChange(async (event, session) => {
-    console.log('Auth state changed:', event, session); // Debugging log
-
-    if (session?.user) {
-      console.log('User is logged in:', session.user); // Debugging log
-
-      // User is logged in, show Logout button
-      if (authButtonContainer) {
-        authButtonContainer.innerHTML = '<button id="logout-button" class="text-red-600 hover:underline">Logout</button>';
-
-        const logoutButton = document.getElementById('logout-button');
-        logoutButton.addEventListener('click', async () => {
-          await client.auth.signOut();
-          location.reload(); // Reload the page to update the UI
-        });
-      } else {
-        console.error('auth-button-container not found in the DOM'); // Debugging log
-      }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const authButtonContainer = document.getElementById('auth-button-container');
+  
+    if (authButtonContainer) {
+      client.auth.onAuthStateChange(async (event, session) => {
+        console.log('Auth state changed:', event, session);
+  
+        if (session?.user) {
+          console.log('User is logged in:', session.user);
+  
+          // User is logged in, show Logout button
+          authButtonContainer.innerHTML = '<button id="logout-button" class="text-red-600 hover:underline">Logout</button>';
+  
+          const logoutButton = document.getElementById('logout-button');
+          if (logoutButton) {
+            logoutButton.addEventListener('click', async () => {
+              await client.auth.signOut();
+              location.reload();
+            });
+          }
+        } else {
+          console.log('User is logged out');
+  
+          // User is logged out, show Sign In / Sign Up button
+          authButtonContainer.innerHTML = '<a href="./login.html" id="auth-button" class="text-blue-600 hover:underline">Sign In / Sign Up</a>';
+        }
+      });
     } else {
-      console.log('User is logged out'); // Debugging log
-
-      // User is logged out, show Sign In / Sign Up button
-      if (authButtonContainer) {
-        authButtonContainer.innerHTML = '<a href="./login.html" id="auth-button" class="text-blue-600 hover:underline">Sign In / Sign Up</a>';
-      } else {
-        console.error('auth-button-container not found in the DOM'); // Debugging log
-      }
+      console.warn('auth-button-container not found in the DOM');
     }
+  });
+
+  // Prevent form submission from refreshing the page
+  const forms = document.querySelectorAll('form');
+  forms.forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
   });
 });

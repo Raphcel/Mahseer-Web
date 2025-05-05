@@ -341,3 +341,7 @@
   height: 180px;
   border-radius: 7px;
 }
+
+.hidden {
+  display: none;
+}

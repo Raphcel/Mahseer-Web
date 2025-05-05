@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-800 text-white flex flex-col">
+      <div class="p-4 text-center font-bold text-lg">Admin Dashboard</div>
+      <nav class="flex-1">
+        <ul class="space-y-2">
+          <li><a href="#" class="block px-4 py-2 hover:bg-blue-700">Dashboard</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-blue-700">Products</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-blue-700">Orders</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-blue-700">Settings</a></li>
+        </ul>
+      </nav>
+      <div class="p-4">
+        <button id="logout" class="w-full bg-red-600 py-2 rounded hover:bg-red-700">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <header class="mb-6">
+        <h1 class="text-2xl font-bold">Welcome, Admin</h1>
+      </header>
+
+      <!-- Product Upload Form -->
+      <section class="bg-white p-6 rounded shadow mb-6">
+        <h2 class="text-lg font-semibold mb-4">Upload New Product</h2>
+        <form id="product-form" class="space-y-4">
+          <input type="text" name="name" placeholder="Product Name" class="w-full px-4 py-2 border rounded shadow-sm" required />
+          <input type="number" name="price" placeholder="Price" class="w-full px-4 py-2 border rounded shadow-sm" required />
+          <input type="file" name="image" class="w-full px-4 py-2 border rounded shadow-sm" required />
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Upload Product</button>
+        </form>
+      </section>
+
+      <!-- Product List -->
+      <section class="bg-white p-6 rounded shadow">
+        <h2 class="text-lg font-semibold mb-4">Product List</h2>
+        <div id="product-list" class="space-y-4">
+          <!-- Display products here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="admin-dashboard.js" type="module"></script>
+</body>
+</html>
