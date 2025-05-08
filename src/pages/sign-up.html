@@ -6,7 +6,7 @@
   <title>Shop - Exotic Mahseer</title>
 <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="../js/script.js" defer></script>
+  <script src="../js/sign-up.js" type="module" defer></script>
 </head>
 <body class="login">
     <section class="login-section">
@@ -42,6 +42,7 @@
                 <h2>Confirm password</h2>
                 <div class="input-container">
                     <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
+                    <p id="password-warning" style="color: red; display: none; font-size: 14px;">Passwords do not match.</p>
                 </div>
                 
                 <button class="login-btn" id="signup-btn">Sign up</button>
