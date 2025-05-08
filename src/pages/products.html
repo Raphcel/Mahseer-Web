@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Shop - Exotic Mahseer</title>
-  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="../css/style.css"> 
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <header>
         <nav>
-            <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
+            <img src="../assets/images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
             <ul>
                 <li> <a href= "index.html"> Home </a></li>
                 <li> <a href= "shop.html"> Shop </a></li>
@@ -27,15 +27,8 @@
         <h1 class="fade-in">Our Products</h1>
         <div class="container-baris fade-in">
           <!---Produk 1--->
-          <div class="container-produk">
-            <div class="gambar-produk" id="produk-1"></div>
-            <div class="detail-produk">
-            <h2>Golden Mahseer</h2>
-            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
-            <h2>Rp100.000</h2>
-            <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>   
-          </div>
-          </div>
+          <!-- Buat Create Post -->
+          <div class="container-baris fade-in" id="product-list"></div> 
           <!---Produk 2--->
           <div class="container-produk">
             <div class="gambar-produk" id="produk-2"></div>
@@ -177,6 +170,7 @@
     </div>
   </section>
 
+  <script type="module" src="../js/products.js"></script>
 </body>
 </html>
 

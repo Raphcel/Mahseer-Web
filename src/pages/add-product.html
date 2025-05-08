@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+</head>
+<body>
+  <h1>Add New Product</h1>
+  <form id="product-form">
+    <label>Name:</label>
+    <input type="text" id="name" required><br>
+
+    <label>Description:</label>
+    <textarea id="description" required></textarea><br>
+
+    <label>Price:</label>
+    <input type="number" id="price" required><br>
+
+    <label>Image URL (optional):</label>
+    <input type="text" id="image_url"><br>
+
+    <button type="submit">Add Product</button>
+  </form>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    const supabase = createClient('https://shrjipgvxhwadpdatdau.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNocmppcGd2eGh3YWRwZGF0ZGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjY2NjEsImV4cCI6MjA2MTQwMjY2MX0.GbnDdaDzxorFZOns_K-71CRTcWNyC_G3I9crzpWIbRU')
+
+    const form = document.getElementById('product-form')
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      const name = document.getElementById('name').value
+      const description = document.getElementById('description').value
+      const price = parseFloat(document.getElementById('price').value)
+      const image_url = document.getElementById('image_url').value || null
+
+      const { error } = await supabase.from('products').insert([
+        { name, description, price, image_url }
+      ])
+
+      if (error) {
+        alert('❌ Error: ' + error.message)
+      } else {
+        alert('✅ Product added!')
+        form.reset()
+      }
+    })
+  </script>
+</body>
+</html>
