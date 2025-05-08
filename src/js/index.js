@@ -6,6 +6,50 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 
+async function loadFunFacts() {
+    const { data: funfacts, error } = await supabase
+      .from('funfacts')
+      .select('*');
+  
+    if (error) {
+      console.error('Failed to load fun facts:', error);
+      return;
+    }
+  
+    const track = document.getElementById('carouselTrack');
+    track.innerHTML = ''; // Clear existing slides
+  
+    funfacts.forEach(fact => {
+      const slide = document.createElement('div');
+      slide.classList.add('carousel-slide');
+      slide.innerHTML = `
+        <img src="${fact.image_url}" class="funfact-image">
+        <div class="funfact-text">
+          <h1>${fact.title}</h1>
+          <h2>${fact.subtitle}</h2>
+          <p>${fact.content}</p>
+          <a href="#funfact" class="seeMore-button" id="seeMore-button-putih">See More</a>
+        </div>
+      `;
+      track.appendChild(slide);
+    });
+  }
+  
+  loadFunFacts();
+  
+  let currentSlide = 0;
+
+function moveSlide(direction) {
+  const track = document.getElementById('carouselTrack');
+  const slides = track.children;
+  const totalSlides = slides.length;
+
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+
+
 // Get container where products will be injected
 const container = document.getElementById('product-list')
 

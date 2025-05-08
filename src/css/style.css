@@ -299,7 +299,7 @@
   background-color:#2751a0;
   color: #DCF3FF;
 }
-
+/* 
 #produk-1 {
   background: url(../assets/images/produk1.png) lightgray 100% / cover no-repeat;
   height: 180px;
@@ -334,7 +334,7 @@
   background: url(../assets/images/produk6.png) lightgray 100% / cover no-repeat;
   height: 180px;
   border-radius: 7px;
-}
+} */
 
 /* -------------------------------section footer------------------------------*/
 .footer {
