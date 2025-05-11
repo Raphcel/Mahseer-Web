@@ -13,18 +13,15 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
-            <ul>
-                <li> <a href="#home"> Home </a></li>
-                <li> <a href="#shop"> Shop </a></li>
-                <li> <a href="#funfact"> Funfact </a></li>
-                <li> <a href="#aboutUs"> About Us </a></li>
-                <li> <a href="#contact"> Contact </a></li>
-            </ul>
-        </nav>
-    </header>
+   <div id="navbar-container"></div>
+
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+</script>
 
     <section class="funfact" id="funfact">
     <div class="slideshow-container">
@@ -100,24 +97,20 @@
 </section>
 
     
-    <section class="footer">
-      <div class="footer-container">
-        <div class="footer-kiri">
-          <img src="images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo-footer">
-          <h2>Exotic Mahseer</h2>
-          <p>Jl. Swadaya Murni 3 No.4, RT.002/RW.003, Jatimurni, Kec. Pd. Melati, Kota Bekasi, Jawa Barat 17431</p>
-        </div>
-        <div class="footer-kanan">
-          <h2>More Information</h2>
-          <div class="sosmed">
-            <p><img src="images/instagram.png" alt="instagram icon" class="icon"> @exoticmahseer.id (Instagram)</p>
-            <p><img src="images/whatsapp.png" alt="whatsapp icon" class="icon"> +62 8138-7967-910 (WhatsApp)</p>
-            <p><img src="images/tokopedia.png" alt="tokopedia icon" class="icon"> ExoticMahseer (Tokopedia)</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
+<body>
+  <!-- Konten Halaman -->
+
+  <div id="footer-container"></div>
+
+  <script>
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      });
+  </script>
+</body>
+
     <script src="funfact.js"></script>
 </body>
 </html>
