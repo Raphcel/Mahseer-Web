@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="aboutus.css" rel="stylesheet" />
+    <title>About Us</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+</script>
+
+    <section class="about" id="about">
+        <h1 class="fade-in">About</h1>
+        <h2 class="fade-in-delay"><span class="blue">Exotic</span> <span class="lime">Mahseer</span></h2>
+    </section>   
+
+    <section class="cardmuda" id="cardmuda">
+        <div class="card-muda">
+            <img src="images/about1.png">
+            <div class="card-text">
+                <h1><span class="birudongker">Kemunculan</span> <span class="birunila">Exotic Mahseer</span></h1>
+                <p>Berawal dari sekadar hobi mengoleksi ikan-ikan langka, kini berkembang menjadi sebuah perusahaan yang berfokus pada salah satu spesies ikan air tawar paling istimewa: Mahseer. Dengan kecintaan yang mendalam terhadap Mahseer, Exotic Mahseer hadir sebagai platform yang memfasilitasi eksplorasi sekaligus jual beli ikan Mahseer secara aman dan terpercaya</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="carddua" id="carddua">
+        <div class="card-dua">
+            <div class="card-text2">
+                <h1><span class="putih">Menduniakan</span> <span class="lime">Mahseer</span></h1>
+                <p>Didorong oleh kecintaan yang mendalam terhadap ikan Mahseer, Exotic Mahseer berkomitmen untuk memperluas jangkauannya ke pasar internasional. Langkah ini bukan hanya bertujuan untuk menjangkau konsumen baru di berbagai belahan dunia, tetapi juga untuk memperkenalkan keindahan dan keunikan Mahseer kepada lebih banyak orang. Melalui ekspansi ini, Exotic Mahseer berharap dapat menumbuhkan apresiasi global terhadap Mahseer, sekaligus menginspirasi semakin banyak pecinta ikan untuk mengenal dan mencintai spesies luar biasa ini</p>
+            </div>
+        </div>
+        <div class="foto2">
+        <img src="images/about3.png">
+    </div>
+    </section>
+
+    <section class="cardtiga" id="cardtiga">
+        <div class="card-tiga">
+            <img src="images/about2.png">
+            <div class="card3-text">
+                <h1><span class="birudongker">Nilai-Nilai Kami</span></h1>
+                <p>Exotic Mahseer berdiri di atas nilai-nilai keaslian, kualitas, dan tanggung jawab terhadap lingkungan. Kami percaya bahwa pelestarian ikan Mahseer harus berjalan seiring dengan pengembangan bisnis. Karena itu, setiap proses budidaya dilakukan secara berkelanjutan dan ramah lingkungan. Kami juga bekerja sama dengan komunitas lokal dan pihak konservasi untuk menjaga kelestarian Mahseer, agar ikan langka ini tetap bisa dinikmati oleh generasi mendatang.</p>
+            </div>
+        </div>
+    </section>
+
+    
+<body>
+  <!-- Konten Halaman -->
+
+  <div id="footer-container"></div>
+
+  <script>
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      });
+  </script>
+</body>
+  
+  <script src="aboutus.js"></script>
+</body>
+</html>
