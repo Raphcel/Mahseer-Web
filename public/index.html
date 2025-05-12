@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="src/assets/images/logo exotice mahseer w bg.png">
+    <link rel="icon" type="image/png" href="/Mahseer-Web/src/assets/images/logo exotic mahseer.png">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Exotic Mahseer</title>
     <link rel="stylesheet" href="../src/css/style.css">
@@ -11,22 +11,21 @@
   </head>
   <body>
     <div id="navbar-container"></div>
-
+    
 <script>
-  fetch('navbar.html')
+  fetch('../src/pages/navbar.html')
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-container').innerHTML = data;
     });
 </script>
-    
+
     <section class="home" id="beranda">
         <h1 class="fade-in">Experience the <span class="lime">Authentic Taste</span> of Mahseer with Us</h1>
         <p class="fade-in-delay">Exotic Mahseer adalah perusahaan yang bergerak di bidang perikanan dan berfokus pada penjualan berbagai jenis ikan Mahseer, salah satu ikan air tawar bernilai tinggi. Kami hadir sebagai sarana eksplorasi dan jual-beli.</p>
         <a href="#aboutUs" class="seeMore-button">See More</a>
     </section>
-    
-<!------------------------ section funfact ------------------------------>
+
     <section class="funfact fade-in" id="funfact">
       <div class="carousel-container">
         <button class="carousel-btn left" onclick="moveSlide(-1)">&#10094;</button>
@@ -41,43 +40,34 @@
     </section>
 
 
-<!---------------------------------- section preview produk ------------------------>
-<section class="preview-produk">
-<h1>Our Products</h1>
-<div class="container-baris fade-in">
-  <!---Produk 1--->
-  <div class="container-baris fade-in" id="product-list"></div> 
-
-</section>
+    <section class="preview-produk">
+      <h1>Our Products</h1>
+      <div class="container-baris fade-in" id="product-list"></div>
+    </section>
 
 
-<!--------------------------------section contact (footer)------------------------------>
-<body>
-  <div id="footer-container"></div>
+    <div id="footer-container"></div>
 
-  <script>
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-container').innerHTML = data;
-      });
-  </script>
-</body>
+    <script>
+      fetch('../src/pages/footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        });
+    </script>
 
-    
-<script>
-  let currentIndex = 0;
+    <script>
+      let currentIndex = 0;
 
-  function moveSlide(step) {
-    const track = document.getElementById('carouselTrack');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const totalSlides = slides.length;
+      function moveSlide(step) {
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
 
-    currentIndex = (currentIndex + step + totalSlides) % totalSlides;
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-</script>
-<script type="module" src="../src/js/index.js"></script>
-    
-    </body>
+        currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    </script>
+    <script type="module" src="../src/js/index.js"></script>
+  </body>
 </html>

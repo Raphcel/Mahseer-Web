@@ -4,11 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop - Exotic Mahseer</title>
-<link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="../js/sign-up.js" type="module" defer></script>
+  <link rel="icon" type="image/png" href="../assets/images/logo%20exotic%20mahseer%20w%20bg.png">
+  <script>
+    fetch('../pages/navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+      });
+  </script>
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      });
+  </script>
 </head>
+
 <body class="login">
+
     <section class="login-section">
         <h1>Sign Up</h1>
         <div class="login-card">

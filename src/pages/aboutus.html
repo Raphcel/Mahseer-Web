@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="../css/aboutus.css" rel="stylesheet" />
     <title>About Us</title>
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="../assets/images/logo exotic mahseer.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
@@ -13,19 +13,15 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <img src="../assets/images/logo exotic mahseer.png" alt="logo exotic mahseer" class="logo">
-            <ul>
-                <li> <a href="../../public/index.html"> Home </a></li>
-                <li> <a href="products.html"> Shop </a></li>
-                <li> <a href="funfact.html"> Funfact </a></li>
-                <li> <a href="aboutus.html"> About Us </a></li>
-                <li> <a href="#contact"> Contact </a></li>
-                <li> <a href="login.html" class="login-button"> Login </a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="navbar-container"></div>
+
+<script>
+  fetch('../pages/navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+</script>
 
     <section class="about" id="about">
         <h1 class="fade-in">About</h1>
@@ -34,7 +30,7 @@
 
     <section class="cardmuda" id="cardmuda">
         <div class="card-muda">
-            <img src="../assets/images/about1.png">
+            <img src="../assets/images/about1.png   ">
             <div class="card-text">
                 <h1><span class="birudongker">Kemunculan</span> <span class="birunila">Exotic Mahseer</span></h1>
                 <p>Berawal dari sekadar hobi mengoleksi ikan-ikan langka, kini berkembang menjadi sebuah perusahaan yang berfokus pada salah satu spesies ikan air tawar paling istimewa: Mahseer. Dengan kecintaan yang mendalam terhadap Mahseer, Exotic Mahseer hadir sebagai platform yang memfasilitasi eksplorasi sekaligus jual beli ikan Mahseer secara aman dan terpercaya</p>
@@ -50,13 +46,13 @@
             </div>
         </div>
         <div class="foto2">
-        <img src="../assets/images/about2.png">
+        <img src="../assets/images/about3.png">
     </div>
     </section>
 
     <section class="cardtiga" id="cardtiga">
         <div class="card-tiga">
-            <img src="../assets/images/about3.png">
+            <img src="../assets/images/about2.png">
             <div class="card3-text">
                 <h1><span class="birudongker">Nilai-Nilai Kami</span></h1>
                 <p>Exotic Mahseer berdiri di atas nilai-nilai keaslian, kualitas, dan tanggung jawab terhadap lingkungan. Kami percaya bahwa pelestarian ikan Mahseer harus berjalan seiring dengan pengembangan bisnis. Karena itu, setiap proses budidaya dilakukan secara berkelanjutan dan ramah lingkungan. Kami juga bekerja sama dengan komunitas lokal dan pihak konservasi untuk menjaga kelestarian Mahseer, agar ikan langka ini tetap bisa dinikmati oleh generasi mendatang.</p>
@@ -65,24 +61,20 @@
     </section>
 
     
-<section class="footer">
-    <div class="footer-container">
-      <div class="footer-kiri">
-        <img src="../assets/images/logo%20exotic%20mahseer.png" alt="logo exotic mahseer" class="logo-footer">
-        <h2>Exotic Mahseer</h2>
-        <p>Jl. Swadaya Murni 3 No.4, RT.002/RW.003, Jatimurni, Kec. Pd. Melati, Kota Bekasi, Jawa Barat 17431</p>
-      </div>
-      <div class="footer-kanan">
-        <h2>More Information</h2>
-        <div class="sosmed">
-          <p><img src="../assets/images/instagram.png" alt="instagram icon" class="icon"> @exoticmahseer.id (Instagram)</p>
-          <p><img src="../assets/images/whatsapp.png" alt="whatsapp icon" class="icon"> +62 8138-7967-910 (WhatsApp)</p>
-          <p><img src="../assets/images/tokopedia.png" alt="tokopedia icon" class="icon"> ExoticMahseer (Tokopedia)</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<body>
+  <!-- Konten Halaman -->
+
+  <div id="footer-container"></div>
+
+  <script>
+    fetch('../pages/footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      });
+  </script>
+</body>
   
-  <script src="/src/js/aboutus.js"></script>
+  <script src="../js/aboutus.js"></script>
 </body>
 </html>

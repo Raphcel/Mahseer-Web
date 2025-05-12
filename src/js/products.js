@@ -8,6 +8,9 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Get container where products will be injected
 const container = document.getElementById('product-list')
+if (!container) {
+  console.error('❌ Error: #product-list container not found in the DOM.');
+}
 
 async function loadProducts() {
   const { data: products, error } = await supabase.from('products').select('*')
