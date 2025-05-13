@@ -22,7 +22,7 @@ async function updateNavbar(session) {
     } else {
         console.log('User is not logged in');
         loginButton.textContent = 'Login / Sign Up';
-        loginButton.href = '/Mahseer-Web/src/pages/login.html';
+        loginButton.href = 'src/pages/login.html';
     }
 }
 

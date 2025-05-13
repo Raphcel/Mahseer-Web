@@ -64,7 +64,7 @@ signupBtn.addEventListener('click', async () => {
 
   alert('Signup successful! Please check your email to verify your account.')
   setTimeout(() => {
-    window.location.href = '/Mahseer-Web/public/index.html'
+    window.location.href = 'public/index.html'
   }, 2000)
 })
 

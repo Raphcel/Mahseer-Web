@@ -28,7 +28,7 @@ async function loadFunFacts() {
         <h1>${fact.title}</h1>
         <h2>${fact.subtitle}</h2>
         <p>${fact.content}</p>
-        <a href="/Mahseer-Web/src/pages/funfact.html" class="seeMore-button" id="seeMore-button-putih">See More</a>
+        <a href="src/pages/funfact.html" class="seeMore-button" id="seeMore-button-putih">See More</a>
       </div>
     `;
     track.appendChild(slide);
