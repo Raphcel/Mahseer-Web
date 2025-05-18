@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Exotic Mahseer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/products.css">
+
+</head>
+<body class="flex h-screen bg-blue-50">
+
+<div id="sidebar-container"></div>
+
+<script>
+  fetch('admin-sidebar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+
+      const path = window.location.pathname;
+      if (path.includes("dashboard")) {
+        document.querySelector('[data-menu="dashboard"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      } else if (path.includes("products")) {
+        document.querySelector('[data-menu="products"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      }
+    });
+</script>
+
+  <!-- Main Content -->
+<section class="preview-produk">
+        <h1 class="fade-in">Products</h1>
+        <a href="add-product.html" class="button">+  Add new product</a>
+        <div class="container-baris fade-in">
+          <!---Produk 1--->
+          <div class="container-produk">
+            <div class="gambar-produk" id="produk-1"></div>
+            <div class="detail-produk">
+            <h2>Golden Mahseer</h2>
+            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+            <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+          </div>
+          </div>
+          <!---Produk 2--->
+          <div class="container-produk">
+            <div class="gambar-produk" id="produk-2"></div>
+            <div class="detail-produk">
+            <h2>Golden Mahseer</h2>
+            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+            <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+          </div>
+          </div>
+          <!---Produk 3--->
+          <div class="container-produk">
+            <div class="gambar-produk" id="produk-3"></div>
+            <div class="detail-produk">
+            <h2>Golden Mahseer</h2>
+            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+            <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+          </div>
+          </div>
+        </div>
+        
+        <div class="container-baris fade-in-delay">
+          <!---Produk 4--->
+          <div class="container-produk">
+            <div class="gambar-produk" id="produk-4"></div>
+            <div class="detail-produk">
+            <h2>Golden Mahseer</h2>
+            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+            <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+          </div>
+          </div>
+          <!---Produk 5--->
+          <div class="container-produk">
+            <div class="gambar-produk" id="produk-5"></div>
+            <div class="detail-produk">
+            <h2>Golden Mahseer</h2>
+            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+            <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+          </div>
+          </div>
+          <!---Produk 6--->
+          <div class="container-produk">
+            <div class="gambar-produk" id="produk-6"></div>
+            <div class="detail-produk">
+            <h2>Golden Mahseer</h2>
+            <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+            <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+          </div>
+          </div>
+        </div>
+
+        <div class="container-baris fade-in">
+            <!---Produk 1--->
+            <div class="container-produk">
+              <div class="gambar-produk" id="produk-1"></div>
+              <div class="detail-produk">
+              <h2>Golden Mahseer</h2>
+              <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+              <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+            </div>
+            </div>
+            <!---Produk 2--->
+            <div class="container-produk">
+              <div class="gambar-produk" id="produk-2"></div>
+              <div class="detail-produk">
+              <h2>Golden Mahseer</h2>
+              <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+              <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+            </div>
+            </div>
+            <!---Produk 3--->
+            <div class="container-produk">
+              <div class="gambar-produk" id="produk-3"></div>
+              <div class="detail-produk">
+              <h2>Golden Mahseer</h2>
+              <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+              <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+            </div>
+            </div>
+          </div>
+          
+          <div class="container-baris fade-in-delay">
+            <!---Produk 4--->
+            <div class="container-produk">
+              <div class="gambar-produk" id="produk-4"></div>
+              <div class="detail-produk">
+              <h2>Golden Mahseer</h2>
+              <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+              <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+            </div>
+            </div>
+            <!---Produk 5--->
+            <div class="container-produk">
+              <div class="gambar-produk" id="produk-5"></div>
+              <div class="detail-produk">
+              <h2>Golden Mahseer</h2>
+              <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+              <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+            </div>
+            </div>
+            <!---Produk 6--->
+            <div class="container-produk">
+              <div class="gambar-produk" id="produk-6"></div>
+              <div class="detail-produk">
+              <h2>Golden Mahseer</h2>
+              <p>Mahseer jenis ini berasal dari India. Ikan ini bisa tumbuh sangat besar dengan warna kuning keemasan</p>
+              <h2>Rp100.000</h2>
+            <a href="edit-product.html" class="edit-button" id="edit-button-lime">Edit</a>   
+            </div>
+            </div>
+          </div>
+        </section>
+
+</body>
+</html>
+ 

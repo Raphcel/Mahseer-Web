@@ -1,0 +1,136 @@
+.preview-produk {
+    padding: 30px 10px; 
+}
+
+.preview-produk h1 {
+  margin-left: 598px;
+  text-align: center;
+  font-size: 42px;
+  padding-bottom: 30px;
+  font-weight: bolder;
+  color: #2749a0;
+  align-items: center;
+}
+
+.container-baris {
+  margin-left: 315px;
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.container-baris h2 {
+  color:#17366E;
+  padding: 20px 0;
+}
+
+.container-baris p {
+  text-align: justify;
+  font-size: 15px;
+}
+
+.container-produk {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.button {
+  background-color: #2751a0;
+  margin-left: 715px;
+  font-size: 20px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    color:#ffffff;
+    font-weight: 800;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.9s ease-out 0.4s forwards;
+}
+
+.button:hover {
+  background-color:#D6E264;
+  color: #17366E;
+}
+
+#edit-button-lime {
+  background-color: #D6E264;
+  font-size: 13px;
+    padding: 7px 23px;
+    border-radius: 30px;
+    color:#17366E;
+    font-weight: 800;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.9s ease-out 0.4s forwards;
+}
+
+#edit-button-lime:hover {
+  background-color:#2751a0;
+  color: #DCF3FF;
+}
+
+#produk-1 {
+  background: url(../../assets/images/produk1.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-2 {
+  background: url(../../assets/images/produk2.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-3 {
+  background: url(../../assets/images/produk3.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-4 {
+  background: url(../../assets/images/produk4.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-5 {
+  background: url(../../assets/images/produk5.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+#produk-6 {
+  background: url(../../assets/images/produk6.png) lightgray 100% / cover no-repeat;
+  height: 180px;
+  border-radius: 7px;
+}
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.9s ease-out forwards;
+  }
+
+  .fade-in-delay {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.9s ease-out 0.2s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
