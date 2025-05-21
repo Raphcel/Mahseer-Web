@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Exotic Mahseer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/edit-product.css">
+<style>
+.thumb-placeholder {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #89BCD9;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 2rem;
+  color: #89BCD9;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.thumb-placeholder:hover {
+  border-color: #17366E;
+  color: #17366E;
+}
+.thumb-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+</style>
+
+</head>
+<body class="flex h-screen bg-blue-50">
+    
+<div id="sidebar-container"></div>
+
+<script>
+  fetch('admin-sidebar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+
+      const path = window.location.pathname;
+      if (path.includes("dashboard")) {
+        document.querySelector('[data-menu="dashboard"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      } else if (path.includes("products")) {
+        document.querySelector('[data-menu="products"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      }
+    });
+</script>
+
+<!-----------------------------form add new product---------------------------------->
+<div class="container">
+  <h1 class="page-title">Edit Product</h1>
+
+  <div class="form-wrapper">
+    <!-- Kiri: Form Input -->
+    <form class="product-form">
+      <div class="form-group">
+        <label>Product name</label>
+        <input type="text" placeholder="Enter product name here...">
+      </div>
+      <div class="form-group">
+        <label>General information</label>
+        <textarea placeholder="Enter general information about your product..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Product description</label>
+        <textarea placeholder="Enter detailed information about your product..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" placeholder="Enter price here...">
+      </div>
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" placeholder="Enter stock here...">
+      </div>
+      <div class="form-group">
+        <label>Product image</label>
+        <input type="file">
+      </div>
+    </form>
+
+    <!-- Kanan: Image Preview -->
+    <div class="image-preview">
+      <h2>Image Preview</h2>
+      <div class="main-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Tor_tambroides.jpg" alt="Preview">
+      </div>
+      <div class="thumbnails" id="product-thumbnails">
+        <div class="thumb-placeholder" data-index="0"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+        <div class="thumb-placeholder" data-index="1"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+        <div class="thumb-placeholder" data-index="2"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+        <div class="thumb-placeholder" data-index="3"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+      </div>
+      <div class="button-group">
+      <a href="products.html" class="btn-draft">Cancel</a>
+    <a href="#" class="btn-add btn-save">Save Changes</a>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import supabase from '../js/supabase.js';
+
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id');
+const thumbPlaceholders = document.querySelectorAll('.thumb-placeholder');
+
+// Load existing images for this product
+if (productId) {
+  (async () => {
+    const { data: images } = await supabase
+      .from('product_images')
+      .select('id, image_url')
+      .eq('product_id', productId);
+    if (images && images.length > 0) {
+      images.slice(0, 4).forEach((img, idx) => {
+        const placeholder = thumbPlaceholders[idx];
+        if (placeholder) {
+          placeholder.innerHTML = '';
+          const imageTag = document.createElement('img');
+          imageTag.src = img.image_url;
+          imageTag.alt = 'thumb';
+          placeholder.appendChild(imageTag);
+          // Store image id for possible replacement
+          placeholder.dataset.imageId = img.id;
+          // Add file input back for replacement
+          const fileInput = document.createElement('input');
+          fileInput.type = 'file';
+          fileInput.accept = 'image/*';
+          fileInput.style.display = 'none';
+          placeholder.appendChild(fileInput);
+        }
+      });
+    }
+  })();
+}
+
+thumbPlaceholders.forEach((placeholder, idx) => {
+  let fileInput = placeholder.querySelector('input[type="file"]');
+  placeholder.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    // Show preview immediately
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      let img = placeholder.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        placeholder.innerHTML = '';
+        placeholder.appendChild(img);
+        placeholder.appendChild(fileInput); // keep file input for future changes
+      }
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+    // Upload to Supabase Storage
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from('product-images')
+      .upload(fileName, file);
+    if (uploadError) {
+      alert('Image upload failed: ' + uploadError.message);
+      return;
+    }
+    const imageUrl = supabase.storage.from('product-images').getPublicUrl(fileName).data.publicUrl;
+    // Save or update in product_images table
+    if (productId) {
+      if (placeholder.dataset.imageId) {
+        // Update existing image row
+        await supabase.from('product_images').update({ image_url: imageUrl }).eq('id', placeholder.dataset.imageId);
+      } else {
+        // Insert new image row
+        const { data: newImg } = await supabase.from('product_images').insert([{ product_id: productId, image_url: imageUrl }]).select().single();
+        if (newImg) placeholder.dataset.imageId = newImg.id;
+      }
+    } else {
+      // For add-product, store imageUrl for later association
+      placeholder.dataset.uploadedUrl = imageUrl;
+    }
+  });
+});
+
+const form = document.querySelector('.product-form');
+const nameInput = form.querySelector('input[type="text"]');
+const generalInfoInput = form.querySelectorAll('textarea')[0];
+const descriptionInput = form.querySelectorAll('textarea')[1];
+const priceInput = form.querySelector('input[placeholder="Enter price here..."]');
+const stockInput = form.querySelector('input[placeholder="Enter stock here..."]');
+const imageInput = form.querySelector('input[type="file"]');
+const saveBtn = document.querySelector('.btn-save');
+
+if (productId) {
+  (async () => {
+    const { data: product, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('id', productId)
+      .single();
+    if (error || !product) {
+      alert('Failed to load product data.');
+      return;
+    }
+    nameInput.value = product.name || '';
+    generalInfoInput.value = product.general_info || '';
+    descriptionInput.value = product.description || '';
+    priceInput.value = product.price || '';
+    if (stockInput) stockInput.value = product.stock || '';
+    if (product.image_url && document.querySelector('.main-image img')) {
+      document.querySelector('.main-image img').src = product.image_url;
+    }
+  })();
+}
+
+if (saveBtn) {
+  saveBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    let imageUrl = null;
+    if (imageInput.files && imageInput.files[0]) {
+      const file = imageInput.files[0];
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('product-images')
+        .upload(fileName, file);
+      if (uploadError) {
+        alert('Image upload failed: ' + uploadError.message);
+        return;
+      }
+      imageUrl = supabase.storage.from('product-images').getPublicUrl(fileName).data.publicUrl;
+    }
+    const updateData = {
+      name: nameInput.value,
+      general_info: generalInfoInput.value,
+      description: descriptionInput.value,
+      price: parseInt(priceInput.value),
+      stock: stockInput ? parseInt(stockInput.value) : undefined,
+    };
+    if (imageUrl) updateData.image_url = imageUrl;
+    const { error } = await supabase
+      .from('products')
+      .update(updateData)
+      .eq('id', productId);
+    if (error) {
+      alert('Failed to update product: ' + error.message);
+      return;
+    }
+    alert('Product updated successfully!');
+    window.location.href = 'admin-products.html';
+  });
+}
+</script>
+<script type="module" src="../js/logout.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Exotic Mahseer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/dashboard-depan.css">
+  <script type="module" src="../js/logout.js"></script>
+</head>
+<body class="flex h-screen bg-[#DCF3FF]">
+
+<div id="sidebar-container"></div>
+
+<script>
+  fetch('admin-sidebar.html')     .then(res => res.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+
+      const path = window.location.pathname;
+      if (path.includes("dashboard")) {
+        document.querySelector('[data-menu="dashboard"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      } else if (path.includes("product")) {
+        document.querySelector('[data-menu="product"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      }
+    });
+</script>
+
+<!-- Main Content -->
+<main class="main-content">
+  <h1 class="page-title">Dashboard</h1>
+  
+  <div class="button-group">
+    <a href="add-product.html" class="btn-add-new">
+      Add new product
+    </a>
+    <a href="admin-products.html" class="btn-see-products">
+      See products
+    </a>
+  </div>
+</main>
+
+</body>
+</html>

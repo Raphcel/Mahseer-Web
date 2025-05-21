@@ -1,53 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Add Product</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Exotic Mahseer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/add-product.css">
+
+
 </head>
-<body>
-  <h1>Add New Product</h1>
-  <form id="product-form">
-    <label>Name:</label>
-    <input type="text" id="name" required><br>
+<body class="flex h-screen bg-blue-50">
+    
+<div id="sidebar-container"></div>
 
-    <label>Description:</label>
-    <textarea id="description" required></textarea><br>
+<script>
+  fetch('admin-sidebar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
 
-    <label>Price:</label>
-    <input type="number" id="price" required><br>
-
-    <label>Image URL (optional):</label>
-    <input type="text" id="image_url"><br>
-
-    <button type="submit">Add Product</button>
-  </form>
-
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
-    const supabase = createClient('https://shrjipgvxhwadpdatdau.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNocmppcGd2eGh3YWRwZGF0ZGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjY2NjEsImV4cCI6MjA2MTQwMjY2MX0.GbnDdaDzxorFZOns_K-71CRTcWNyC_G3I9crzpWIbRU')
-
-    const form = document.getElementById('product-form')
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault()
-
-      const name = document.getElementById('name').value
-      const description = document.getElementById('description').value
-      const price = parseFloat(document.getElementById('price').value)
-      const image_url = document.getElementById('image_url').value || null
-
-      const { error } = await supabase.from('products').insert([
-        { name, description, price, image_url }
-      ])
-
-      if (error) {
-        alert('❌ Error: ' + error.message)
+      const path = window.location.pathname;
+      if (path.includes("products")) {
+        document.querySelector('[data-menu="products"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
       } else {
-        alert('✅ Product added!')
-        form.reset()
+        document.querySelector('[data-menu="dashboard"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
       }
-    })
-  </script>
+    });
+</script>
+
+<!-----------------------------form add new product---------------------------------->
+<div class="container">
+  <h1 class="page-title">Add New Product</h1>
+
+  <div class="form-wrapper">
+    <!-- Kiri: Form Input -->
+    <form class="product-form">
+      <div class="form-group">
+        <label>Product name</label>
+        <input type="text" placeholder="Enter product name here...">
+      </div>
+      <div class="form-group">
+        <label>General information</label>
+        <textarea placeholder="Enter general information about your product..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Product description</label>
+        <textarea placeholder="Enter detailed information about your product..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" placeholder="Enter price here...">
+      </div>
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" placeholder="Enter stock here...">
+      </div>
+      <div class="form-group">
+        <label>Product image</label>
+        <input type="file">
+      </div>
+    </form>
+
+    <!-- Kanan: Image Preview -->
+    <div class="image-preview">
+      <h2>Image Preview</h2>
+      <div class="main-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Tor_tambroides.jpg" alt="Preview">
+      </div>
+      <div class="thumbnails" id="product-thumbnails">
+        <div class="thumb-placeholder" data-index="0"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+        <div class="thumb-placeholder" data-index="1"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+        <div class="thumb-placeholder" data-index="2"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+        <div class="thumb-placeholder" data-index="3"><span>+</span><input type="file" accept="image/*" style="display:none"></div>
+      </div>
+      <div class="button-group">
+      <button class="btn-draft">Save as draft</button>
+    <button class="btn-add">Add product</button>
+    </div>
+    </div>
+  </div>
+
+  
+</div>
+
+</body>
+</html>
+
+<script type="module" src="../js/add-product.js"></script>
+<style>
+.thumb-placeholder {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #89BCD9;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 2rem;
+  color: #89BCD9;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.thumb-placeholder:hover {
+  border-color: #17366E;
+  color: #17366E;
+}
+.thumb-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+</style>
+<script>
+// Optional: Add JS to handle image preview on click
+const thumbInputs = document.querySelectorAll('.thumb-placeholder');
+thumbInputs.forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    // Trigger file input or show a modal to select image
+    alert('Click to add or change image for slot #' + (parseInt(thumb.dataset.index) + 1));
+  });
+});
+</script>
+<script type="module">
+import supabase from '../js/supabase.js';
+
+const productId = null; // For add-product, productId is not available yet
+const thumbPlaceholders = document.querySelectorAll('.thumb-placeholder');
+
+thumbPlaceholders.forEach((placeholder, idx) => {
+  const fileInput = placeholder.querySelector('input[type="file"]');
+  placeholder.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    // Show preview immediately
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      let img = placeholder.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        placeholder.innerHTML = '';
+        placeholder.appendChild(img);
+      }
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+    // Upload to Supabase Storage
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from('product-images')
+      .upload(fileName, file);
+    if (uploadError) {
+      alert('Image upload failed: ' + uploadError.message);
+      return;
+    }
+    const imageUrl = supabase.storage.from('product-images').getPublicUrl(fileName).data.publicUrl;
+    // Save to product_images table (wait for productId after product is created)
+    placeholder.dataset.uploadedUrl = imageUrl;
+    // Optionally, store the imageUrl in a JS array for later use on product insert
+  });
+});
+
+// On Add Product, collect all uploaded image URLs and insert them after product is created
+const addButton = document.querySelector('.btn-add');
+addButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  // ...existing validation and product insert code...
+  // After product is inserted and you have the new productId:
+  // let newProductId = ...;
+  // let imageUrls = Array.from(thumbPlaceholders).map(p => p.dataset.uploadedUrl).filter(Boolean);
+  // for (const url of imageUrls) {
+  //   await supabase.from('product_images').insert([{ product_id: newProductId, image_url: url }]);
+  // }
+});
+</script>
 </body>
 </html>
