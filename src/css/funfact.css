@@ -109,6 +109,13 @@
   margin-bottom: 30px;
 }
 
+.funfact h1,
+.funfact h2 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
 .funfact p {
   color: var(--biru-dongker, #17366E);
   text-align: justify;
@@ -219,7 +226,10 @@
 }
 
 .content {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .prev, .next {
