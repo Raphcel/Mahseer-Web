@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Funfact - Exotic Mahseer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/add-product.css">
+</head>
+<body class="flex h-screen bg-blue-50">
+    
+<div id="sidebar-container"></div>
+
+<script>
+  fetch('admin-sidebar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+    });
+</script>
+
+<div class="container">
+  <h1 class="page-title">Add New Funfact</h1>
+  <div class="form-wrapper">
+    <!-- Left: Form Input -->
+    <form class="funfact-form">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" placeholder="Enter funfact title here..." required>
+      </div>
+      <div class="form-group">
+        <label>Subtitle</label>
+        <input type="text" placeholder="Enter funfact subtitle here...">
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea placeholder="Enter funfact content here..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Funfact image</label>
+        <input type="file" accept="image/*">
+      </div>
+      <div class="button-group">
+        <button class="btn-add-funfact">Add Funfact</button>
+      </div>
+    </form>
+    <!-- Right: Image Preview -->
+    <div class="image-preview">
+      <h2>Image Preview</h2>
+      <div class="main-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Tor_tambroides.jpg" alt="Preview" id="funfact-image-preview">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import supabase from '../js/supabase.js';
+
+const form = document.querySelector('.funfact-form');
+const titleInput = form.querySelector('input[placeholder="Enter funfact title here..."]');
+const subtitleInput = form.querySelector('input[placeholder="Enter funfact subtitle here..."]');
+const contentInput = form.querySelector('textarea');
+const imageInput = form.querySelector('input[type="file"]');
+const addButton = form.querySelector('.btn-add-funfact');
+const imagePreview = document.getElementById('funfact-image-preview');
+
+imageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    imagePreview.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+addButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  // Validate required fields
+  if (!titleInput.value || !contentInput.value) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  let imageUrl = null;
+  if (imageInput.files && imageInput.files[0]) {
+    const file = imageInput.files[0];
+    const fileExt = file.name.split('.').pop();
+    const fileName = `funfact-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from('funfact-images')
+      .upload(fileName, file);
+    if (uploadError) {
+      alert('Image upload failed: ' + uploadError.message);
+      return;
+    }
+    imageUrl = supabase.storage.from('funfact-images').getPublicUrl(fileName).data.publicUrl;
+  }
+  // Insert funfact into Supabase
+  const { data, error } = await supabase
+    .from('funfacts')
+    .insert([
+      {
+        title: titleInput.value,
+        subtitle: subtitleInput.value,
+        content: contentInput.value,
+        image_url: imageUrl
+      }
+    ]);
+  if (error) {
+    alert('Failed to add funfact: ' + error.message);
+    return;
+  }
+  alert('Funfact added successfully!');
+  window.location.href = 'funfact.html';
+});
+</script>
+
+</body>
+</html>

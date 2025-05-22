@@ -29,7 +29,8 @@ body {
 }
 
 .btn-add-new,
-.btn-see-products {
+.btn-see-products,
+.btn-add-funfact {
   background-color: #dceeff;
   color: #335ca9;
   font-weight: 800;
@@ -41,13 +42,15 @@ body {
 }
 
 .btn-add-new:hover,
-.btn-see-products:hover {
+.btn-see-products:hover,
+.btn-add-funfact:hover {
   background-color: #b4dbff;
   color: #17366E;
 }
 
 .btn-add-new:active,
-.btn-see-products:active {
+.btn-see-products:active,
+.btn-add-funfact:active {
   background-color: #b4dbff;
 }
 
