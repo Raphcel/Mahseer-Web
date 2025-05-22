@@ -41,12 +41,28 @@
   </aside>
   <script type="module">
     import supabase from '../js/supabase.js';
-    document.getElementById('logout-btn').addEventListener('click', async (e) => {
-      e.preventDefault();
-      await supabase.auth.signOut();
-      sessionStorage.clear();
-      window.location.href = '../../index.html';
-    });
+
+    (async () => {
+      // Get current session
+      const { data: { session } } = await supabase.auth.getSession();
+      let username = 'Unknown';
+      let role = 'Unknown';
+      if (session && session.user) {
+        const userId = session.user.id;
+        const { data: userData, error: userError } = await supabase
+          .from('users')
+          .select('username, role')
+          .eq('id', userId)
+          .single();
+        if (!userError && userData) {
+          username = userData.username;
+          role = userData.role;
+        }
+      }
+      // Update sidebar
+      document.querySelector('.text-sm.font-semibold').textContent = username;
+      document.querySelector('.text-xs.text-blue-200').textContent = role.charAt(0).toUpperCase() + role.slice(1);
+    })();
   </script>
   <script type="module" src="../js/logout.js"></script>
 </body>

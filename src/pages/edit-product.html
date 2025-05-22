@@ -226,6 +226,24 @@ if (productId) {
 if (saveBtn) {
   saveBtn.addEventListener('click', async (e) => {
     e.preventDefault();
+    // Check session and role
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session || !session.user) {
+      alert('You must be logged in as an admin to update products.');
+      return;
+    }
+    const userId = session.user.id;
+    // Fetch user role
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', userId)
+      .single();
+    if (userError || !userData || userData.role !== 'admin') {
+      alert('Only admin users can update products.');
+      return;
+    }
+    // ...existing code for image upload and updateData...
     let imageUrl = null;
     if (imageInput.files && imageInput.files[0]) {
       const file = imageInput.files[0];
@@ -248,12 +266,17 @@ if (saveBtn) {
       stock: stockInput ? parseInt(stockInput.value) : undefined,
     };
     if (imageUrl) updateData.image_url = imageUrl;
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('products')
       .update(updateData)
-      .eq('id', productId);
+      .eq('id', productId)
+      .select(); // get updated rows
     if (error) {
       alert('Failed to update product: ' + error.message);
+      return;
+    }
+    if (!data || data.length === 0) {
+      alert('Product could not be changed. Log in as an admin to change the product.');
       return;
     }
     alert('Product updated successfully!');

@@ -13,6 +13,23 @@ const addButton = document.querySelector('.btn-add');
 addButton.addEventListener('click', async (e) => {
   e.preventDefault();
 
+  // Check session and role
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session || !session.user) {
+    alert('You must be logged in as an admin to add products.');
+    return;
+  }
+  const userId = session.user.id;
+  const { data: userData, error: userError } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', userId)
+    .single();
+  if (userError || !userData || userData.role !== 'admin') {
+    alert('Only admin users can add products.');
+    return;
+  }
+
   // Validate required fields
   if (!nameInput.value || !descriptionInput.value || !priceInput.value) {
     alert('Please fill in all required fields.');

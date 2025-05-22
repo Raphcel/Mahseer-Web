@@ -88,6 +88,22 @@ async function loadAdminProducts() {
 }
 
 confirmBtn.addEventListener('click', async () => {
+  // Check session and role
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session || !session.user) {
+    alert('You must be logged in as an admin to delete products.');
+    return;
+  }
+  const userId = session.user.id;
+  const { data: userData, error: userError } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', userId)
+    .single();
+  if (userError || !userData || userData.role !== 'admin') {
+    alert('Only admin users can delete products.');
+    return;
+  }
   if (!productToDelete) return;
   const { error } = await supabase.from('products').delete().eq('id', productToDelete);
   if (error) {
