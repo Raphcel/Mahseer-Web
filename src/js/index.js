@@ -63,6 +63,25 @@ async function loadProducts() {
   });
 }
 
+// Check and redirect admin after Google OAuth login (or any login)
+async function checkAndRedirectAdmin() {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  const { data: userRow } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single();
+
+  if (userRow && userRow.role === 'admin') {
+    window.location.href = '/src/pages/dashboard-depan.html';
+  }
+}
+
+// Run on page load
+checkAndRedirectAdmin();
+
 // Call the functions to load data
 loadFunFacts();
 loadProducts();

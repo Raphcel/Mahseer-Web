@@ -24,14 +24,26 @@ loginForm.addEventListener('submit', async (e) => {
     return
   }
 
+  // Fetch user role from users table
+  let role = null;
+  const { data: userRow, error: userError } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', data.user.id)
+    .single();
+  if (userRow) role = userRow.role;
+
   // Show modal and profile section
   loginSuccessModal.classList.remove('hidden')
   profileSection.classList.remove('hidden')
   profileEmail.textContent = `Logged in as: ${data.user.email}`
 
-  // Optionally redirect to homepage after delay
   setTimeout(() => {
-    window.location.href = '/index.html'
+    if (role === 'admin') {
+      window.location.href = '/src/pages/dashboard-depan.html';
+    } else {
+      window.location.href = '/index.html';
+    }
   }, 2000)
 })
 
