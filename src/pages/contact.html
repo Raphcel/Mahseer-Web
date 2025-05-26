@@ -5,24 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Exotic Mahseer</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="contactstyle.css" />
+  <link rel="stylesheet" href="../css/contactstyle.css" />
 </head>
 <body>
-  <div class="white-overlay"></div>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <img src="images/logo-exotic-mahseer.png" alt="logo" class="logo" />
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Shop</a></li>
-        <li><a href="funfact.html">Funfact</a></li>
-        <li><a href="aboutus.html">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="login.html" class="login-button">Login / Sign Up</a></li>
-      </ul>
-    </nav>
-  </header>
+
+
+<div id="navbar-container"></div>
+
+<script>
+  fetch('../pages/navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+</script>
 
   <!-- Contact Section -->
   <main class="contact-section">
@@ -56,22 +52,15 @@
     </form>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-left">
-        <img src="images/logo-exotic-mahseer.png" alt="logo" class="logo-footer" />
-        <h2>Exotic Mahseer</h2>
-        <p>Jl. Swadaya Murni 3 No.4, RT.002/RW.003, Jatimurni, Kec. Pd. Melati, Kota Bekasi, Jawa Barat 17431</p>
-      </div>
-      <div class="footer-right">
-        <h4>More Information</h4>
-        <p><img src="images/instagram.png" class="icon" alt="Instagram" /> @exoticmahseer.id</p>
-        <p><img src="images/whatsapp.png" class="icon" alt="WhatsApp" /> +62 8138-7967-910</p>
-        <p><img src="images/tokopedia.png" class="icon" alt="Tokopedia" /> ExoticMahseer</p>
-      </div>
-    </div>
-  </footer>
+<div id="footer-container"></div>
+
+<script>
+  fetch('../pages/footer.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+    });
+</script>
 
 </body>
 </html>
