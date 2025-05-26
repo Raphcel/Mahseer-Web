@@ -1,0 +1,247 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  background-image: url('images/background.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.white-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4); /* putih transparan */
+  z-index: 0;
+}
+
+body {
+  position: relative;
+  z-index: 1;
+}
+header,
+.contact-section,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header/Navbar */
+header {
+  background: linear-gradient(to right, #d1e3f7, #bcdcf2);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: 700; /* BOLD */
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #001a4d;
+  outline: none;
+}
+
+.login-button {
+  background-color: #e9f84f;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #000;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover,
+.login-button:focus {
+  background-color: #d6db38;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Contact Section */
+.contact-section {
+  flex: 1;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #003366;
+  min-height: 80vh;
+}
+
+.contact-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700; /* BOLD */
+}
+
+/* Form */
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: rgba(0, 31, 77, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  color: #fff;
+  text-align: left;
+}
+
+.contact-form .row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-group label {
+  margin-bottom: 0.4rem;
+  font-weight: 700; /* BOLD */
+  color: #fff;
+  text-align: left;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #a6c9ec;
+  color: white; /* WHITE TEXT INSIDE BOX */
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: white; /* Placeholder text in white */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  background-color: #c0d9f8;
+  outline: none;
+}
+
+.contact-form textarea {
+  width: 100%;
+  resize: none;
+}
+
+.contact-form button {
+  display: block;
+  margin: 1rem auto 0;
+  background-color: #e9f84f;
+  color: #000;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover,
+.contact-form button:focus {
+  background-color: #d6db38;
+  outline: none;
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(to right, #d1e3f7, #bcdcf2);
+  padding: 2rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: #00264d;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 1rem;
+}
+
+.footer-left .logo-footer {
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-left h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-right h4 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.icon {
+  width: 16px;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-top: 1rem;
+  }
+
+  .contact-form .row {
+    flex-direction: column;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+}
