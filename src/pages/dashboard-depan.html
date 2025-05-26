@@ -14,15 +14,27 @@
 <div id="sidebar-container"></div>
 
 <script>
-  fetch('admin-sidebar.html')     .then(res => res.text())
+  fetch('admin-sidebar.html')
+    .then(res => res.text())
     .then(data => {
       document.getElementById('sidebar-container').innerHTML = data;
 
       const path = window.location.pathname;
-      if (path.includes("dashboard")) {
-        document.querySelector('[data-menu="dashboard"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
-      } else if (path.includes("product")) {
-        document.querySelector('[data-menu="product"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold");
+      if (path.includes("product")) {
+        document.querySelector('[data-menu="products"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold", "hover:bg-blue-200");
+        document.querySelector('[data-menu="dashboard"]').classList.add("text-white", "font-semibold", "hover:bg-blue-800");
+        document.querySelector('[data-menu="funfact"]').classList.add("text-white", "font-semibold", "hover:bg-blue-800");
+      }
+
+      else if (path.includes("funfact")) {
+        document.querySelector('[data-menu="funfact"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold", "hover:bg-blue-200");
+        document.querySelector('[data-menu="dashboard"]').classList.add("text-white", "font-semibold", "hover:bg-blue-800");
+        document.querySelector('[data-menu="products"]').classList.add("text-white", "font-semibold", "hover:bg-blue-800");
+          
+      } else {
+        document.querySelector('[data-menu="dashboard"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold", "hover:bg-blue-200");
+        document.querySelector('[data-menu="products"]').classList.add("text-white", "font-semibold", "hover:bg-blue-800");
+        document.querySelector('[data-menu="funfact"]').classList.add("text-white", "font-semibold", "hover:bg-blue-800");
       }
     });
 </script>
