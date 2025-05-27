@@ -30,10 +30,11 @@ body {
 
 .btn-add-new,
 .btn-see-products,
-.btn-add-funfact {
+.btn-add-funfact,
+.btn-see-messages {
   background-color: #dceeff;
   color: #335ca9;
-  font-weight: 800;
+  font-weight: 600;
   padding: 20px 35px;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
@@ -43,14 +44,16 @@ body {
 
 .btn-add-new:hover,
 .btn-see-products:hover,
-.btn-add-funfact:hover {
+.btn-add-funfact:hover,
+.btn-see-messages:hover {
   background-color: #b4dbff;
   color: #17366E;
 }
 
 .btn-add-new:active,
 .btn-see-products:active,
-.btn-add-funfact:active {
+.btn-add-funfact:active,
+.btn-see-messages:active {
   background-color: #b4dbff;
 }
 
