@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Messages - Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/dashboard-depan.css">
+</head>
+<body class="flex h-screen bg-[#DCF3FF]">
+
+<div id="sidebar-container"></div>
+<script>
+  fetch('admin-sidebar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+      // Highlight menu if needed
+      if (document.querySelector('[data-menu="contact"]')) {
+        document.querySelector('[data-menu="contact"]').classList.add("bg-blue-100", "text-blue-900", "font-semibold", "hover:bg-blue-200");
+      }
+    });
+</script>
+
+<main class="main-content w-full flex flex-col items-center justify-center min-h-screen p-8">
+  <h1 class="page-title text-3xl font-bold mb-8 text-center">Contact Messages</h1>
+  <div class="overflow-x-auto w-full max-w-5xl">
+    <table class="min-w-full bg-white rounded-lg shadow-lg">
+      <thead>
+        <tr>
+          <th class="px-4 py-3 text-center">Name</th>
+          <th class="px-4 py-3 text-center">Phone</th>
+          <th class="px-4 py-3 text-center">Email</th>
+          <th class="px-4 py-3 text-center">Subject</th>
+          <th class="px-4 py-3 text-center">Message</th>
+          <th class="px-4 py-3 text-center">Date</th>
+          <th class="px-4 py-3 text-center">Status</th>
+          <th class="px-4 py-3 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody id="contact-messages-body">
+        <!-- Messages will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script type="module" src="../js/admin-contact.js"></script>
+</body>
+</html>
