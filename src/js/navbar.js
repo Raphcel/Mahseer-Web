@@ -1,52 +1,70 @@
-import supabase from './supabase.js'
+import supabase from './supabase.js';
 
-// Updates the navbar button based on user role
-async function updateNavbar() {
-    const loginButton = document.querySelector('.login-button');
-    if (!loginButton) {
-        console.error('No .login-button found in the DOM!');
-        return;
+export default async function updateNavbar() {
+const loginLink = document.querySelector('.login-link');
+  const navGuest = document.getElementById('nav-guest');
+  const navUser = document.getElementById('nav-user');
+  const navAdmin = document.getElementById('nav-admin');
+
+  function showGuestNavbar() {
+    if (navGuest) navGuest.style.display = 'flex';
+    if (navUser) navUser.style.display = 'none';
+    if (navAdmin) navAdmin.style.display = 'none';
+    if (loginLink) {
+        loginLink.style.display = '';
+        loginLink.href = '/src/pages/login.html';
     }
-    // Get current session
-    const sessionRes = await supabase.auth.getSession();
-    const session = sessionRes.data?.session;
-    if (session && session.user) {
-        // Fetch user role from users table
-        const { data: userData, error } = await supabase
-            .from('users')
-            .select('role')
-            .eq('id', session.user.id)
-            .single();
-        if (userData && typeof userData.role === 'string' && userData.role.length > 0) {
-            loginButton.style.display = 'none';
-            // Show a dedicated logout button if present
-            let logoutButton = document.querySelector('.logout-button');
-            if (!logoutButton) {
-                // If not present, create and insert it after loginButton
-                logoutButton = document.createElement('a');
-                logoutButton.className = 'logout-button';
-                logoutButton.href = '#';
-                logoutButton.textContent = 'Logout';
-                loginButton.parentNode.insertBefore(logoutButton, loginButton.nextSibling);
-            }
-            logoutButton.style.display = '';
-            logoutButton.onclick = async (e) => {
-                e.preventDefault();
-                await supabase.auth.signOut();
-                window.location.reload();
-            };
-            return;
-        } else {
-            // Hide logout button if present
-            const logoutButton = document.querySelector('.logout-button');
-            if (logoutButton) logoutButton.style.display = 'none';
-            loginButton.style.display = '';
-        }
+  }
+
+  async function showUserNavbar() {
+    const { data: user, error } = await supabase.auth.getUser();
+    if (error || !user?.user) {
+      showGuestNavbar();
+      return;
     }
-    // If not logged in or no role found
-    loginButton.textContent = 'Login / Sign Up';
-    loginButton.href = 'src/pages/login.html';
-    loginButton.onclick = null;
+
+    const userId = user.user.id;
+    const { data: userData } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', userId)
+      .single();
+
+    if (!userData?.role) {
+      showGuestNavbar();
+      return;
+    }
+
+    const role = userData.role;
+
+    if (navGuest) navGuest.style.display = 'none';
+    if (loginLink) loginLink.style.display = 'none';
+
+    if (role === 'admin') {
+      if (navAdmin) navAdmin.style.display = 'flex';
+      if (navUser) navUser.style.display = 'none';
+    } else {
+      if (navUser) navUser.style.display = 'flex';
+      if (navAdmin) navAdmin.style.display = 'none';
+    }
+
+    const logoutButtons = document.querySelectorAll('.logout-button');
+    logoutButtons.forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await supabase.auth.signOut();
+        localStorage.removeItem('isLoggedIn');
+        window.location.href = '/index.html'; // reload ke home agar navbar reset
+      });
+    });
+  }
+
+  // Jalankan saat pertama kali
+  showUserNavbar();
+
+  // Dengarkan perubahan sesi login/logout
+  supabase.auth.onAuthStateChange((event, _) => {
+    if (event === 'SIGNED_OUT') showGuestNavbar();
+    if (event === 'SIGNED_IN') showUserNavbar();
+  });
 }
-
-window.initNavbar = updateNavbar;
