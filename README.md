@@ -1,6 +1,6 @@
-# Exotic Mahseer Website
+# 🐟🪼 Exotic Mahseer Website
 
-## Our Team
+## 👾 Our Team
 Kelompok 4
 - Fatiyya Ilmi Zahra (G6401231016): UI/UX Designer & Front-end Developer (Home & Admin Dashboard)
 - Hasan Fadilah (G6401231051): Front-end Developer (Contact & Login/Sign In)
