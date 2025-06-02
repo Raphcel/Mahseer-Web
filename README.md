@@ -19,5 +19,15 @@ Website Exotic Mahseer dirancang untuk memperkenalkan ikan Mahseer dan perusahaa
 ## Class Diagram
 ![image](https://github.com/user-attachments/assets/11bdc0fc-c7ad-47d8-aa65-baff70a7ea14)
 
+
+## Fitur
+## Home Page
+![image](https://github.com/user-attachments/assets/e8ab384b-889f-4c3b-9f90-e332cbbda16f)
+## Login and Sign Up
+![image](https://github.com/user-attachments/assets/eba1c5cb-40d3-4808-b178-3f814c9904b2)
+![image](https://github.com/user-attachments/assets/3e19ef63-d549-4a66-94d1-833ecf1c3950)
+## Contact
+![image](https://github.com/user-attachments/assets/e2afaa7c-0a65-4780-a067-e13512f443b5)
+
 ## Exotic Mahseer Website
 https://exoticmahseer.netlify.app
