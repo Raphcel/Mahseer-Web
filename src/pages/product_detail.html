@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Mahseer</title>
+    <link rel="stylesheet" href="../css/produk_detail.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" type="image/png" href="../assets/images/logo exotic mahseer.png">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script>      const basePriceIDR = 100000;
+      const API_KEY = '8fe53419940174701d23d64e9d04a8ec';
+      let exchangeRates = { IDR: 1 };
+
+      // Fetch latest exchange rates when page loads
+      async function fetchExchangeRates() {
+        try {
+          const response = await fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=${API_KEY}`);
+          const data = await response.json();
+          if (data.success && data.rates) {
+            // Since API returns rates relative to EUR, we need to calculate rates relative to IDR
+            const idrToEur = data.rates.IDR; // How many IDR for 1 EUR
+            const rates = {};
+            // Calculate conversion rates relative to IDR
+            for (const currency in data.rates) {
+              rates[currency] = data.rates[currency] / idrToEur; // This gives us how many of target currency for 1 IDR
+            }
+            exchangeRates = rates;
+            // Set initial price display
+            document.getElementById("priceDisplay").textContent = "Rp" + basePriceIDR.toLocaleString("id-ID");
+          } else {
+            console.error('Failed to fetch exchange rates:', data);
+          }
+        } catch (error) {
+          console.error('Error fetching exchange rates:', error);
+        }
+      }
+
+      // Call this when page loads
+      fetchExchangeRates();      function toggleDropdown(event) {
+        if (event) {
+          event.stopPropagation(); // Prevent event from bubbling up
+        }
+        const menu = document.getElementById("currencyMenu");
+        if (menu.style.display === "block") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "block";
+          menu.style.position = "absolute";
+          menu.style.zIndex = "1000";
+        }
+      }function convertPrice(currency) {
+        const priceDisplay = document.getElementById("priceDisplay");
+        
+        // For IDR, show original price
+        if (currency === 'IDR') {
+          priceDisplay.textContent = "Rp" + basePriceIDR.toLocaleString("id-ID");
+          toggleDropdown();
+          return;
+        }        // Check if we have the exchange rate
+        if (!exchangeRates[currency]) {
+          priceDisplay.textContent = "Currency rate not available";
+          toggleDropdown();
+          return;
+        }
+
+        const converted = basePriceIDR * exchangeRates[currency];
+        let formatted = "";
+
+        // Format the number based on locale
+        const formattedNumber = new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(converted);
+
+        switch (currency) {
+          case "USD":
+            formatted = "$" + formattedNumber;
+            break;
+          case "AUD":
+            formatted = "A$" + formattedNumber;
+            break;
+          case "EUR":
+            formatted = "€" + formattedNumber;
+            break;
+          case "CNY":
+            formatted = "¥" + formattedNumber;
+            break;
+          default:
+            formatted = formattedNumber + " " + currency;
+            break;
+        }
+
+        document.getElementById("priceDisplay").textContent = formatted;
+        toggleDropdown();
+      }      // Close if clicked outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.querySelector(".currency-dropdown");
+        const menu = document.getElementById("currencyMenu");
+        if (dropdown && !dropdown.contains(event.target)) {
+          menu.style.display = "none";
+        }
+      });
+      function scrollThumbnails(direction) {
+        const container = document.getElementById("thumbnail-scroll");
+        const scrollAmount = 90 * 4; // 4 thumbnails × width (adjust as needed)
+        container.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
+      }
+    </script>  </head>
+  <body>
+    <div id="navbar-container"></div>
+
+    <script>
+      fetch('../pages/navbar.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('navbar-container').innerHTML = data;
+        });
+    </script>
+
+    <div class="page-container">      <main class="product-container">
+        <a href="products.html" class="back-link">&lt; Back</a>
+
+        <div class="product-grid" id="product-detail">
+          <!-- Left Side: Image + Thumbnails -->
+          <div class="product-images">
+            <img
+              src=""
+              class="main-img"
+              id="main-image"
+              alt="Product Image"
+            />
+
+            <div class="thumbnail-wrapper">
+              <div class="thumbnail-scroll-container" id="thumbnail-container">
+                <!-- Thumbnails will be loaded dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side: Info -->
+          <div class="product-info">
+            <h1 id="product-name">Loading...</h1>
+            <h2 class="price" id="priceDisplay">Loading...</h2>
+
+            <div class="currency-dropdown">              <button class="dropdown-btn" onclick="toggleDropdown(event)">
+                Convert to.. ▾
+              </button>              <ul class="dropdown-menu" id="currencyMenu">
+                <li onclick="convertPrice('AUD'); event.stopPropagation();">AUD</li>
+                <li onclick="convertPrice('USD'); event.stopPropagation();">USD</li>
+                <li onclick="convertPrice('CNY'); event.stopPropagation();">CNY</li>
+                <li onclick="convertPrice('EUR'); event.stopPropagation();">EUR</li>
+                <li onclick="convertPrice('IDR'); event.stopPropagation();">IDR</li>
+              </ul>
+              <span class="stock">Stock: 100</span>
+            </div>            <h4>General Information</h4>
+            <p id="general-info">Loading...</p>
+
+            <a href="wa.me/6287877033816" target="_blank">
+              <button class="buy-button">
+                <span class="icon-circle">
+                  <img src="../assets/images/whatsapp.png" alt="WA" />
+                </span>
+                <span class="btn-text">Buy Now via WhatsApp</span>
+              </button>
+            </a>
+            <a href="https://www.tokopedia.com/" target="_blank">
+              <button class="buy-button">
+                <span class="icon-circle">
+                  <img src="../assets/images/tokopedia.png" alt="Tokopedia" />
+                </span>
+                <span class="btn-text">Buy Now via Tokopedia</span>
+              </button>
+            </a>
+          </div>
+          <!-- Description -->
+          <section class="product-description">
+            <h3>Product Description</h3>
+            <p id="product-description">Loading...</p>
+          </section>          <section class="related-products">
+            <h2>Other products you might like</h2>
+            <div class="product-cards-wrapper">
+              <div class="product-cards" id="related-products">
+                <!-- Related products will be loaded dynamically -->
+              </div>
+            </div>
+          </section>
+
+          </div>
+        </div>      </main>
+    </div>
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    <script>
+      fetch('../pages/footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        });
+    </script>
+    <script type="module">      import { initNavbar } from '../js/navbar.js';
+      initNavbar();
+    </script>
+    <script type="module" src="../js/product_detail.js"></script>
+  </body>
+</html>
