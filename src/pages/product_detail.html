@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="../assets/images/logo exotic mahseer.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <script>      const basePriceIDR = 100000;
+    <script>      
       const API_KEY = '8fe53419940174701d23d64e9d04a8ec';
       let exchangeRates = { IDR: 1 };
 
@@ -28,7 +28,7 @@
             }
             exchangeRates = rates;
             // Set initial price display
-            document.getElementById("priceDisplay").textContent = "Rp" + basePriceIDR.toLocaleString("id-ID");
+            document.getElementById("priceDisplay").textContent = "Rp" + window.basePriceIDR.toLocaleString("id-ID");
           } else {
             console.error('Failed to fetch exchange rates:', data);
           }
@@ -52,28 +52,30 @@
         }
       }function convertPrice(currency) {
         const priceDisplay = document.getElementById("priceDisplay");
-        
-        // For IDR, show original price
-        if (currency === 'IDR') {
-          priceDisplay.textContent = "Rp" + basePriceIDR.toLocaleString("id-ID");
+        // Ensure basePriceIDR is a number
+        const price = typeof window.basePriceIDR === 'number' ? window.basePriceIDR : parseInt(window.basePriceIDR);
+        if (!price || isNaN(price)) {
+          priceDisplay.textContent = "Price not available";
           toggleDropdown();
           return;
-        }        // Check if we have the exchange rate
+        }
+        // For IDR, show original price
+        if (currency === 'IDR') {
+          priceDisplay.textContent = "Rp" + price.toLocaleString("id-ID");
+          toggleDropdown();
+          return;
+        }
         if (!exchangeRates[currency]) {
           priceDisplay.textContent = "Currency rate not available";
           toggleDropdown();
           return;
         }
-
-        const converted = basePriceIDR * exchangeRates[currency];
+        const converted = price * exchangeRates[currency];
         let formatted = "";
-
-        // Format the number based on locale
         const formattedNumber = new Intl.NumberFormat('en-US', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }).format(converted);
-
         switch (currency) {
           case "USD":
             formatted = "$" + formattedNumber;
@@ -91,8 +93,7 @@
             formatted = formattedNumber + " " + currency;
             break;
         }
-
-        document.getElementById("priceDisplay").textContent = formatted;
+        priceDisplay.textContent = formatted;
         toggleDropdown();
       }      // Close if clicked outside
       document.addEventListener("click", function (event) {
