@@ -6,7 +6,7 @@ Kelompok 4
 - Hasan Fadilah (G6401231051): Front-end Developer (Contact & Login/Sign In)
 - Hanif Febrian (G6401231070): Front-end Developer (Shop & Product Detail)
 - Rafif Muhammad Farras (G6401231102): Back-end Developer & Website Integrator
-- Khalisha Rana Putri (G6401231141): UI/UX Designer & Front-end (About us & Funfact)
+- Khalisha Rana Putri (G6401231141): UI/UX Designer & Front-end Developer (About us & Funfact)
 
 ## 💡 About
 Website Exotic Mahseer dirancang untuk memperkenalkan ikan Mahseer dan perusahaan klien, Exotic Mahseer, yang dilengkapi dengan fitur konversi kurs mata uang dan etalase-etalase produk ikan Mahseer. Website ini menjadi media eksplorasi dan promosi berbagai jenis ikan Mahseer secara informatif dan menarik bagi pengunjung dari berbagai negara.
