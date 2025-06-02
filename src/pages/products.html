@@ -10,16 +10,31 @@
 </head>
 <body>
     <header>
-      <div id="navbar-container"></div>
+    <div id="navbar-container"></div>
+    
+<script type="module">
+  import updateNavbar from '../js/navbar.js';
 
-      <script>
-        fetch('../pages/navbar.html')
-          .then(res => res.text())
-          .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
-          });
-      </script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
 
+      const scripts = document.querySelector('#navbar-container').querySelectorAll('script');
+      scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        newScript.type = oldScript.type || 'text/javascript';
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+
+     updateNavbar();
+    });
+</script>
     </header>
 
     <section class="preview-produk">
