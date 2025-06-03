@@ -93,17 +93,6 @@
         currentIndex = (currentIndex + step + totalSlides) % totalSlides;
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
       }
-
-      // Make the See More button behave like in products.html
-      document.addEventListener('DOMContentLoaded', function() {
-        const seeMoreBtn = document.getElementById('seeMoreBtn');
-        if (seeMoreBtn) {
-          seeMoreBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = 'src/pages/products.html';
-          });
-        }
-      });
     </script>
     <script type="module" src="src/js/index.js"></script>
   </body>
