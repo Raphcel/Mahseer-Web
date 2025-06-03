@@ -1,10 +1,10 @@
 .preview-produk {
     padding: 30px 10px; 
+    margin-left: 320px; /* lebar sidebar */
 }
 
 
 .preview-produk h1 {
-  margin-left: 598px;
   text-align: center;
   font-size: 42px;
   padding-bottom: 30px;
@@ -14,13 +14,12 @@
 }
 
 .container-baris {
-  margin-left: 315px;
-  padding-top: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 15px;
-  justify-content: center;
-  width: 100%;
+  grid-template-columns: repeat(3, 1fr); /* fix 3 kolom */
+  gap: 20px;
+  padding-top: 40px;
+  max-width: 1020px; /* 3 x 320px kira-kira */
+  margin: 0 auto; /* center container */
 }
 
 .container-baris h2 {
@@ -41,9 +40,33 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+.detail-produk p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Jumlah baris yang ditampilkan */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+@media (max-width: 1024px) {
+  .container-baris {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container-baris {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+  }
+}
+
+
 .button {
   background-color: #2751a0;
-  margin-left: 715px;
+  margin-left: 390px;
   font-size: 20px;
     padding: 10px 30px;
     border-radius: 30px;
