@@ -27,10 +27,10 @@ Website Exotic Mahseer dirancang untuk memperkenalkan ikan Mahseer dan perusahaa
 ![image](https://github.com/user-attachments/assets/eba1c5cb-40d3-4808-b178-3f814c9904b2)
 ![image](https://github.com/user-attachments/assets/3e19ef63-d549-4a66-94d1-833ecf1c3950)
 ## Contact
+![image](https://github.com/user-attachments/assets/e2afaa7c-0a65-4780-a067-e13512f443b5)
 ## Produk
 ![image](https://github.com/user-attachments/assets/5e960528-0cc6-43d9-96c7-639326b444bd)
 ![image](https://github.com/user-attachments/assets/ea0cb1dc-bbfb-42c4-befd-8e31874fe18e)
-![image](https://github.com/user-attachments/assets/e2afaa7c-0a65-4780-a067-e13512f443b5)
 ## Funfact
 ![image](https://github.com/user-attachments/assets/9c912f18-fdbf-4ed9-abe0-9aa6e92af6bc)
 ![image](https://github.com/user-attachments/assets/26ed4126-0853-4093-98db-201337b8ebf5)
