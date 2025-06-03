@@ -32,7 +32,7 @@ async function loadFunFacts() {
         <img src="${fact.image_url || '../assets/images/funfact.png'}" alt="Funfact Image" class="funfact-image">
         <div class="funfact-text">
           <p>${fact.content || ''}
-            ${fact.sumber ? `<br><br><strong>Sumber:</strong><br>${fact.sumber}` : ''}
+            ${fact.sumber ? `<br><br><strong>Sumber:</strong><br><a href="${fact.sumber}" target="_blank">${fact.sumber}</a>` : ''}
           </p>
         </div>
       </div>
