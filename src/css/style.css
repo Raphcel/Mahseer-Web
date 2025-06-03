@@ -4,6 +4,7 @@
     font-family: 'Nunito', sans-serif;
   }
   
+  /* -------------------------- navbar --------------------------------------*/
   nav {
     display: flex;
     justify-content: space-between;
@@ -34,14 +35,14 @@
     color: #2d60bf;
   }
 
-  .login-button {
+  #login-button {
     background-color: #DCF3FF;
     padding: 5px 15px;
     border-radius: 30px;
     transition: background-color 0.5s ease;
   }
 
-  .login-button:hover {
+  #login-button:hover {
     background-color:#17366E;
     color:#DCF3FF;
     padding: 5px 15px;
@@ -51,6 +52,11 @@
   .logo {
     width: 120px;
   }
+
+  .hidden {
+  display: none;
+}
+
 
   .home h1 {
     color: #FFF;

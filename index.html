@@ -12,13 +12,32 @@
   <body>
     <div id="navbar-container"></div>
     
-<script>
+<script type="module">
+  import updateNavbar from './src/js/navbar.js';
+
   fetch('src/pages/navbar.html')
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-container').innerHTML = data;
+
+      // Jalankan ulang semua script di dalam navbar.html kalau ada
+      const scripts = document.querySelector('#navbar-container').querySelectorAll('script');
+      scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        newScript.type = oldScript.type || 'text/javascript';
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+
+      // HANYA di sini kita panggil updateNavbar!
+      updateNavbar();
     });
 </script>
+
 
     <section class="home" id="beranda">
         <h1 class="fade-in">Experience the <span class="lime">Authentic Taste</span> of Mahseer with Us</h1>
