@@ -60,7 +60,7 @@ async function loadProducts() {
       </div>
       <div class="detail-produk">
       <h2>${product.name}</h2>
-      <p>${product.description}</p>
+      <p>${product.general_info}</p>
       <h2>Rp${parseInt(product.price).toLocaleString('id-ID')}</h2>
       <a href="src/pages/product_detail.html?id=${product.id}" class="seeMore-button" id="seeMore-button-lime">See More</a>
       </div>
