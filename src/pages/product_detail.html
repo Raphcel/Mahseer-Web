@@ -16,11 +16,10 @@
       // Fetch latest exchange rates when page loads
       async function fetchExchangeRates() {
         try {
-          const response = await fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=${API_KEY}`);
+          const response = await fetch(`https://api.exchangeratesapi.io/v1/latest?access_key=${API_KEY}`);
           const data = await response.json();
           if (data.success && data.rates) {
-            // Since API returns rates relative to EUR, we need to calculate rates relative to IDR
-            const idrToEur = data.rates.IDR; // How many IDR for 1 EUR
+            const idrToEur = data.rates.IDR; //  IDR for 1 EUR
             const rates = {};
             // Calculate conversion rates relative to IDR
             for (const currency in data.rates) {
