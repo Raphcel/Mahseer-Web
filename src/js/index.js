@@ -48,14 +48,14 @@ async function loadProducts() {
 
     card.innerHTML = `
       <div class="gambar-produk">
-        <img src="${product.image_url}" alt="${product.name}" 
-        style="width:100%; height:200px; object-fit:cover; border-radius:12px;">
+      <img src="${product.image_url}" alt="${product.name}" 
+      style="width:100%; height:200px; object-fit:cover; border-radius:12px;">
       </div>
       <div class="detail-produk">
-        <h2>${product.name}</h2>
-        <p>${product.description}</p>
-        <h2>Rp${parseInt(product.price).toLocaleString('id-ID')}</h2>
-        <a href="#shop" class="seeMore-button" id="seeMore-button-lime">See More</a>
+      <h2>${product.name}</h2>
+      <p>${product.description}</p>
+      <h2>Rp${parseInt(product.price).toLocaleString('id-ID')}</h2>
+      <a href="src/pages/product_detail.html?id=${product.id}" class="seeMore-button" id="seeMore-button-lime">See More</a>
       </div>
     `;
 
