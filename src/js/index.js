@@ -17,12 +17,19 @@ async function loadFunFacts() {
   funfacts.forEach(fact => {
     const slide = document.createElement('div');
     slide.classList.add('carousel-slide');
+    // Limit content preview to ~150 chars, cut at word boundary
+    let preview = fact.content || '';
+    if (preview.length > 150) {
+      let cut = preview.slice(0, 150);
+      const lastSpace = cut.lastIndexOf(' ');
+      preview = cut.slice(0, lastSpace > 0 ? lastSpace : 150) + '...';
+    }
     slide.innerHTML = `
       <img src="${fact.image_url}" class="funfact-image">
       <div class="funfact-text">
         <h1>${fact.title}</h1>
         <h2>${fact.subtitle}</h2>
-        <p>${fact.content}</p>
+        <p>${preview}</p>
         <a href="src/pages/funfact.html" class="seeMore-button" id="seeMore-button-putih">See More</a>
       </div>
     `;

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Funfact - Exotic Mahseer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/add-product.css">
+</head>
+<body class="flex h-screen bg-blue-50">
+  <div id="sidebar-container"></div>
+  <script>
+    fetch('admin-sidebar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('sidebar-container').innerHTML = data;
+      });
+  </script>
+  <div class="container">
+    <h1 class="page-title">Edit Funfact</h1>
+    <div class="form-wrapper">
+      <form class="funfact-edit-form">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" required>
+        </div>
+        <div class="form-group">
+          <label>Subtitle</label>
+          <input type="text" name="subtitle">
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea name="content" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Sumber</label>
+          <input type="text" name="sumber">
+        </div>
+        <div class="form-group">
+          <label>Funfact image</label>
+          <input type="file" accept="image/*" name="image">
+        </div>
+        <div class="button-group">
+          <button class="btn-save-funfact">Save Changes</button>
+        </div>
+      </form>
+      <div class="image-preview">
+        <h2>Image Preview</h2>
+        <div class="main-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Tor_tambroides.jpg" alt="Preview" id="funfact-edit-image-preview">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="../js/edit-funfact.js"></script>
+</body>
+</html>

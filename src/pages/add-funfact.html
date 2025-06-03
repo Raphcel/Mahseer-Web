@@ -68,6 +68,10 @@
         <textarea placeholder="Enter funfact content here..." required></textarea>
       </div>
       <div class="form-group">
+        <label>Sumber</label>
+        <input type="text" placeholder="Enter sumber (source) here...">
+      </div>
+      <div class="form-group">
         <label>Funfact image</label>
         <input type="file" accept="image/*">
       </div>
@@ -83,6 +87,27 @@
       </div>
     </div>
   </div>
+
+  <!-- Funfacts Table -->
+  <div class="overflow-x-auto w-full max-w-5xl mt-10">
+    <h2 class="text-2xl font-bold mb-4 text-blue-900 text-center">All Funfacts</h2>
+    <table class="min-w-full bg-white rounded-lg shadow-lg">
+      <thead>
+        <tr>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Title</th>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Subtitle</th>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Content</th>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Sumber</th>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Image</th>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Created At</th>
+          <th class="px-4 py-3 bg-blue-200 text-blue-900 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody id="funfacts-table-body">
+        <!-- Funfacts will be inserted here -->
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script type="module">
@@ -95,6 +120,7 @@ const contentInput = form.querySelector('textarea');
 const imageInput = form.querySelector('input[type="file"]');
 const addButton = form.querySelector('.btn-add-funfact');
 const imagePreview = document.getElementById('funfact-image-preview');
+const funfactsTableBody = document.getElementById('funfacts-table-body');
 
 imageInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
@@ -145,7 +171,42 @@ addButton.addEventListener('click', async (e) => {
   alert('Funfact added successfully!');
   window.location.href = 'funfact.html';
 });
+
+async function fetchFunfacts() {
+  const { data, error } = await supabase
+    .from('funfacts')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) {
+    console.error('Error fetching funfacts:', error);
+    return;
+  }
+  // Clear existing table rows
+  funfactsTableBody.innerHTML = '';
+  // Populate table with funfacts
+  data.forEach(funfact => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="px-4 py-3 border-b text-center">${funfact.title}</td>
+      <td class="px-4 py-3 border-b text-center">${funfact.subtitle || '-'}</td>
+      <td class="px-4 py-3 border-b text-center">${funfact.content}</td>
+      <td class="px-4 py-3 border-b text-center">${funfact.sumber || '-'}</td>
+      <td class="px-4 py-3 border-b text-center">
+        <img src="${funfact.image_url}" alt="Funfact Image" class="w-16 h-16 object-cover rounded-full mx-auto">
+      </td>
+      <td class="px-4 py-3 border-b text-center">${new Date(funfact.created_at).toLocaleString()}</td>
+      <td class="px-4 py-3 border-b text-center">
+        <button class="text-blue-600 hover:underline edit-funfact" data-id="${funfact.id}">Edit</button>
+        <button class="text-red-600 hover:underline delete-funfact" data-id="${funfact.id}">Delete</button>
+      </td>
+    `;
+    funfactsTableBody.appendChild(row);
+  });
+}
+
+fetchFunfacts();
 </script>
 <script type="module" src="../js/logout.js"></script>
+<script type="module" src="../js/add-funfact-table.js"></script>
 </body>
 </html>
