@@ -59,7 +59,7 @@ signupBtn.addEventListener('click', async () => {
 
   alert('Signup successful! Please check your email to verify your account.')
   setTimeout(() => {
-    window.location.href = '/'
+    window.location.href = 'https://exoticmahseer.netlify.app/index.html'
   }, 2000)
 })
 
